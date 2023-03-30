@@ -390,7 +390,7 @@ Advertise || Miscochat Concept
                                     </div>
                                 </div>
                                 <div class="col-md-9">
-                                    <h6>{{ Auth::user()->profile->first()->fname }} {{ Auth::user()->profile->first()->lname }} </h6>
+                                    <h6>{{ Auth::user()->fname }} {{ Auth::user()->lname }} </h6>
                                     <span style="font-size: 13px;" class="muted">@ {{ Auth::user()->username }}</span>
                                 </div>
                             </div>

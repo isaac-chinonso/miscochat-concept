@@ -43,7 +43,7 @@ Dashboard || Miscochat Concept
                     <h6><strong>MISCOCHAT CONCEPT</strong></h6>
                     <h6><strong>UBA</strong></h6><br>
                     <p style="font-size: 13px;">After Successfull Payment, Kindly Send Proof of Payment to the Whatsapp link beow to get your coupon code</p><br>
-                    <button class="btn btn-outline" style="padding: 4px 6px 4px 6px;"><a href="https://api.whatsapp.com/send?phone=2347026936724&text=Hello, my name is {{ Auth::user()->profile->first()->fname }} , I just paid for coupon" target="_blank" style="color: #5f04f6;"><img src="../assetsuser/images/whatsapp.png" width="20px" height="20px"> Send Message</a></button><br><br>
+                    <button class="btn btn-outline" style="padding: 4px 6px 4px 6px;"><a href="https://api.whatsapp.com/send?phone=2347026936724&text=Hello, my username is {{ Auth::user()->username }} , I just paid for coupon" target="_blank" style="color: #5f04f6;"><img src="../assetsuser/images/whatsapp.png" width="20px" height="20px"> Send Message</a></button><br><br>
                     <form method="post" action="{{ url('/user/activate-user') }}" class="wallet-form">
                         @csrf
                         <label>Coupon Code <span class="text-danger">*</span></label>
@@ -61,7 +61,7 @@ Dashboard || Miscochat Concept
                     <h6><strong>MISCOCHAT CONCEPT</strong></h6>
                     <h6><strong>UBA</strong></h6><br>
                     <p style="font-size: 13px;">After Successfull Payment, Kindly Send Proof of Payment to the Whatsapp link beow to get activated</p><br>
-                    <button class="btn btn-outline" style="padding: 4px 6px 4px 6px;"><a href="https://api.whatsapp.com/send?phone=2347026936724&text=Hello, my name is {{ Auth::user()->profile->first()->fname }} , I just paid for membership activation" target="_blank" style="color: #5f04f6;"><img src="../assetsuser/images/whatsapp.png" width="20px" height="20px"> Send Message</a></button><br><br>
+                    <button class="btn btn-outline" style="padding: 4px 6px 4px 6px;"><a href="https://api.whatsapp.com/send?phone=2347026936724&text=Hello, my username is {{ Auth::user()->username }} , I just paid for membership activation" target="_blank" style="color: #5f04f6;"><img src="../assetsuser/images/whatsapp.png" width="20px" height="20px"> Send Message</a></button><br><br>
                     <form class="wallet-form">
                         <label>Amount</label>
                         <input type="text" name="" value="₦3000" disabled>

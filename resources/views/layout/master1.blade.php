@@ -104,15 +104,14 @@
                     </div>
                     <div class="tpoffcanvas__info-address">
                         <span>Phone</span>
-                        <a href="tel:(00)45611227890">(00) 456 1122 7890</a>
+                        <a href="tel:+2347026936724">+234 702 693 6724</a>
                     </div>
                 </div>
             </div>
             <div class="tpoffcanvas__social">
                 <div class="social-icon">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-square"></i></a>
+                    <a href="https://Instagram.com/miscochatofficial1" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/themiscochat" target="_blank"><i class="fab fa-facebook-square"></i></a>
                 </div>
             </div>
         </div>

@@ -8,12 +8,18 @@ use App\Models\Transaction;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Paystack;
 
 class UserTransactionController extends Controller
 {
     public function deposit(Request $request)
     {
+         // Validation
+         $this->validate($request, [
+            'amount' => 'required',
+        ]);
+
         $user = Auth::user();
         $amount = $request->input('amount');
 
@@ -22,7 +28,7 @@ class UserTransactionController extends Controller
             "reference" => 'wallet_funding_' . time(),
             'email' => auth()->user()->email,
             'username' => Auth::user()->username,
-            'phone' => Auth::user()->profile->first()->phone,
+            'phone' => Auth::user()->phone,
         );
 
         $transaction = new Transaction();
@@ -38,6 +44,16 @@ class UserTransactionController extends Controller
 
     public function withdraw(Request $request)
     {
+        // Validation
+        $validator = Validator::make($request->all(), [
+            'amount' => 'required|numeric|min:4000',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $user = Auth::user();
         $walletfund = Wallet::find($user->id);

@@ -17,9 +17,6 @@ Fund Wallet || Miscochat Concept
         </div>
         <div class="row">
             <div class="col-lg-12">
-                @include('include.success')
-                @include('include.warning')
-                @include('include.error')
                 <div class="account-card">
                     <h3 class="account-title">
                         @if (date("H") < 12) Good morning, <span class="text-danger">{{ Auth::user()->username }}</span>

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Wallet;
 use App\Models\Profile;
 use App\Http\Controllers\Controller;
+use App\Models\Referral;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -66,6 +67,7 @@ class UserController extends Controller
         $user->lname = $request->input('lname');
         $user->password = bcrypt($request->input('password'));
         $user->role_id = 2;
+        $user->refer_by_id = $request->input('referred_by_user');
         $user->activated = 0;
         $user->status = 1;
         if (User::where('email', '=', $user->email)->exists()) {
@@ -73,6 +75,16 @@ class UserController extends Controller
         } else {
             $user->save();
         }
+
+        // Find the referring user by username
+        $referringUser = User::where('username', $request->referred_by_user)->firstOrFail();
+
+        //Save Record into Referral DB
+        $referral = new Referral();
+        $referral->user_id = $user->id;
+        $referral->referred_by_user = $referringUser->username;
+        $referral->earnings = 2000.00;
+        $referral->save();
 
         //Save Record into Wallet DB
         $wallet = new Wallet();

@@ -45,7 +45,8 @@ Place Withdrawal || Miscochat Concept
                 <div class="account-card">
                     <h3 class="account-title">Place Withdrawal</h3>
                     <p>Please Enter amount you want to withdraw from your wallet</p>
-                    <br><br>
+                    <h6>Minimum Withdrawal is ₦4000</h6>
+                    <br>
                     <form method="post" action="{{ url('/user/withdraw') }}" class="wallet-form">
                         @csrf
                         <div class="row row-cols-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-2">

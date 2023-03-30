@@ -66,8 +66,8 @@ Dashboard || Miscochat Concept
                                         <h2><i class="fa fa-share-square text-white"></i></h2>
                                     </div>
                                     <div class="col-md-8">
-                                        <p class="text-white">Total Refferal</p>
-                                        <h3 class="text-white">0</h3>
+                                        <p class="text-white">Total Referral</p>
+                                        <h3 class="text-white">{{ $referrals }}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -79,8 +79,8 @@ Dashboard || Miscochat Concept
                                         <h2><i class="fa fa-tag text-white"></i></h2>
                                     </div>
                                     <div class="col-md-8">
-                                        <p class="text-white">Refferal Earnings</p>
-                                        <h3 class="text-white">₦0.00</h3>
+                                        <p class="text-white">Referral Earnings</p>
+                                        <h3 class="text-white">₦{{ $referralearning }}</h3>
                                     </div>
                                 </div>
 
@@ -98,6 +98,7 @@ Dashboard || Miscochat Concept
     <div class="row">
         <div class="col-md-12">
             <div class="banner-btn" align="center">
+                <h4 style="text-align:center;"><strong>Refferal ID: {{ Auth::user()->username }} </strong> </h4> <br>
                 <a class="btn btn-inline" href="{{ url('/user/fund-wallet') }}"><i class="fas fa-credit-card"></i><span>FUND</span></a>
                 <a class="btn btn-outline" href="{{ url('/user/place-withdrawal') }}"><i class="fa fa-wallet"></i><span>WITHDRAW</span></a>
             </div><br><br>

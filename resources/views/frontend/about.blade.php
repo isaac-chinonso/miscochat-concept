@@ -13,7 +13,7 @@ About us || Miscochat Concept
             <div class="row">
                 <div class="col-xxl-12">
                     <div class="breadcrumb__content">
-                        <h3 class="breadcrumb__title wow tpfadeUp" data-wow-duration=".7s" data-wow-delay=".5s">About Sixart
+                        <h3 class="breadcrumb__title wow tpfadeUp" data-wow-duration=".7s" data-wow-delay=".5s">About Miscochat
                         </h3>
                         <div class="breadcrumb__list wow tpfadeUp" data-wow-duration=".9s">
                             <span><a href="#">Home</a></span>

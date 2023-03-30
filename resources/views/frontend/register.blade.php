@@ -68,6 +68,14 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Referred By</label>
+                                            <input type="text" class="form-control" name="referred_by_user" placeholder="Enter Referral Username">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Password</label>

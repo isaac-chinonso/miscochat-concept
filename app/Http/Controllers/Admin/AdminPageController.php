@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Referral;
 use App\Models\Task;
 use App\Models\Topup;
 use App\Models\Topup_Plan;
@@ -14,6 +15,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminPageController extends Controller
 {
@@ -29,12 +31,13 @@ class AdminPageController extends Controller
         $data['orders'] = Order::count();
         $data['users'] = User::where('role_id', 2)->count();
         $data['pendingtransactions'] = Transaction::where('status', 0)->count();
+        $data['referrals'] = Referral::count();
         return view('admin.dashboard', $data);
     }
 
     public function member()
     {
-        $data['users'] = User::where('role_id', 2)->get();
+        $data['users'] = DB::table('users')->where('role_id', 2)->get();
         return view('admin.member', $data);
     }
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Referral;
 use App\Models\Task;
 use App\Models\Topup;
 use App\Models\Topup_Plan;
@@ -28,6 +29,8 @@ class UserPageController extends Controller
         $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
         $data['taskearning'] = Transaction::where('user_id', $user->id)->where('type', '=', 'Task Earning')->sum('amount');
         $data['totalspent'] = Transaction::where('user_id', $user->id)->where('type', '=', 'topup')->sum('amount');
+        $data['referralearning'] = Referral::where('referred_by_user', $user->id)->sum('earnings');
+        $data['referrals'] = Referral::where('referred_by_user', $user->id)->count();
         $data['product'] = Product::where('status', 1)->get();
         $data['tasks'] = Task::where('user_id', $user->id)->get();
         return view('user.dashboard', $data);

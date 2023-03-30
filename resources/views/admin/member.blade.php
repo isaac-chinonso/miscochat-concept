@@ -40,6 +40,7 @@ Members || Miscochat Concept
                                         <tr>
                                             <th>#</th>
                                             <th>Username</th>
+                                            <th>Referred by</th>
                                             <th>Fullname</th>
                                             <th>Email</th>
                                             <th>Phone</th>
@@ -56,6 +57,7 @@ Members || Miscochat Concept
                                         <tr>
                                             <td>{{ $number }}</td>
                                             <td>{{ $use->username }}</td>
+                                            <td>{{ $use->refer_by_id }}</td>
                                             <td>{{ $use->fname }} {{ $use->lname }}</td>
                                             <td>{{ $use->email }}</td>
                                             <td>{{ $use->phone }}</td>
