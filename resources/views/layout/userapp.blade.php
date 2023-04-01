@@ -23,6 +23,30 @@
     <link rel="stylesheet" href="../assetsuser/css/profile.css">
     <link rel="stylesheet" href="../assetsuser/css/style.css">
     <link rel="stylesheet" href="css/orderlist.css">
+    <!-- responsive tag -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Perform Social Tasks and Earn Steady Figures Daily, Online Reselling App, Sell Faster, Social Marketplace">
+    <meta name="keywords" content="Miscochat, Perform Social Tasks and Earn Steady Figures Daily, Online Reselling App, Sell Faster, Social Marketplace">
+    <meta name="author" content="Miscochat">
+
+    <meta property="og:url" content="https://www.miscochat.ng/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Perform Social Tasks and Earn Steady Figures Daily" />
+    <meta property="og:description" content="Earn steady daily income by performing social media tasks such as Following, Liking, Commenting, Sharing, Retweeting, App Reviews etc." />
+    <meta property="og:image" content="https://miscochat.ng/assets/img/logo/logo.png" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNJ2P1BFBG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-JNJ2P1BFBG');
+    </script>
 </head>
 
 <body>
@@ -181,7 +205,7 @@
         </ul>
         <div class="nav-info-group ">
             <div class="nav-info "><i class="icofont-ui-touch-phone "></i>
-                <p><small>call us</small><span>+234 702 693 6724</span></p>
+                <p><small>call us</small><span>+234 916 697 5341</span></p>
             </div>
             <div class="nav-info "><i class="icofont-ui-email "></i>
                 <p><small>email us</small><span>enquiry@miscochat.ng</span></p>

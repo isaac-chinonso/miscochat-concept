@@ -24,6 +24,32 @@
     <link rel="stylesheet" href="assets/css/magnific-popup.css">
     <link rel="stylesheet" href="assets/css/spacing.css">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- responsive tag -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Perform Social Tasks and Earn Steady Figures Daily, Online Reselling App, Sell Faster, Social Marketplace">
+    <meta name="keywords" content="Miscochat, Perform Social Tasks and Earn Steady Figures Daily, Online Reselling App, Sell Faster, Social Marketplace">
+    <meta name="author" content="Miscochat">
+
+    <meta property="og:url" content="https://www.miscochat.ng/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Perform Social Tasks and Earn Steady Figures Daily" />
+    <meta property="og:description" content="Earn steady daily income by performing social media tasks such as Following, Liking, Commenting, Sharing, Retweeting, App Reviews etc." />
+    <meta property="og:image" content="https://miscochat.ng/assets/img/logo/logo.png" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNJ2P1BFBG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-JNJ2P1BFBG');
+    </script>
 </head>
 
 <body>
@@ -53,14 +79,12 @@
                         <div class="tp-main-menu d-none d-xl-block">
                             <nav id="mobile-menu">
                                 <ul>
-                                    <li><a href="{{ url('/') }}">Home</a>
-                                    </li>
-                                    <li><a href="{{ url('/about') }}">About</a>
-                                    </li>
-                                    <li><a href="{{ url('marketplace') }}">Marketplace</a>
-                                    </li>
-                                    <li><a href="{{ url('/support') }}">Support</a>
-                                    </li>
+                                    <li><a href="{{ url('/') }}">Home</a></li>
+                                    <li><a href="{{ url('/about') }}">About</a></li>
+                                    <li><a href="{{ url('marketplace') }}">Marketplace</a></li>
+                                    <li><a href="{{ url('/support') }}">Support</a></li>
+                                    <li><a href="{{ url('/buy-coupon') }}">Buy Coupon</a></li>
+                                    <li><a href="{{ url('/privacy-policy') }}">Privacy Policy</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -87,6 +111,8 @@
                 <p>If you have any questions or need additional information, do not hesitate to contact us. We have an unbeatable support system so you can contact us</p>
             </div>
             <div class="mobile-menu"></div>
+            <h6><a href="{{ url('/register') }}" class="text-white">Create Account</a></h6><br>
+            <h6><a href="{{ url('/login') }}" class="text-white">Login to Account</a></h6>
             <div class="tpoffcanvas__info">
                 <h3 class="offcanva-title">Get In Touch</h3>
                 <div class="tp-info-wrapper mb-20 d-flex align-items-center">
@@ -95,7 +121,7 @@
                     </div>
                     <div class="tpoffcanvas__info-address">
                         <span>Email</span>
-                        <a href="maito:miscochat.com@gmail.com"><span class="__cf_email__">miscochat.com@gmail.com</span></a>
+                        <a href="maito:themiscochat@gmail.com"><span class="__cf_email__">themiscochat@gmail.com</span></a>
                     </div>
                 </div>
                 <div class="tp-info-wrapper mb-20 d-flex align-items-center">
@@ -104,14 +130,14 @@
                     </div>
                     <div class="tpoffcanvas__info-address">
                         <span>Phone</span>
-                        <a href="tel:+2347026936724">+234 702 693 6724</a>
+                        <a href="tel:+2349166975341">+234 9166 975 341</a>
                     </div>
                 </div>
             </div>
             <div class="tpoffcanvas__social">
                 <div class="social-icon">
-                    <a href="https://Instagram.com/miscochatofficial1" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/themiscochat" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                    <a href="https://instagram.com/miscochatofficial1" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com/groups/2796370700613614/" target="_blank"><i class="fab fa-facebook-square"></i></a>
                 </div>
             </div>
         </div>
@@ -135,9 +161,8 @@
                             <div class="tp-footer-widget__list">
                                 <ul>
                                     <li><a href="{{ url('/about') }}">About us</a></li>
-                                    <li><a href="#">Disclaimer</a></li>
-                                    <li><a href="#">Contact</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="{{ url('/support') }}">Contact</a></li>
+                                    <li><a href="{{ url('/privacy-policy') }}">Privacy Policy</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -149,10 +174,9 @@
                             </div>
                             <div class="tp-footer-widget__list">
                                 <ul>
-                                    <li><a href="#">Buy Coupon Code</a></li>
+                                    <li><a href="{{ url('/buy-coupon') }}">Buy Coupon Code</a></li>
                                     <li><a href="#">How Miscochat Works</a></li>
-                                    <li><a href="#">FAQ</a></li>
-                                    <li><a href="#">Support</a></li>
+                                    <li><a href="{{ url('/support') }}">Support</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -165,9 +189,8 @@
                             <div class="tp-footer-widget__list">
                                 <ul>
                                     <li><a href="{{ url('/marketplace') }}">Marketplace</a></li>
-                                    <li><a href="#">Reselling</a></li>
-                                    <li><a href="#">Selling</a></li>
-                                    <li><a href="{{ url('/register') }}">Register</a></li>
+                                    <li><a href="{{ url('/login') }}">Login</a></li>
+                                    <li><a href="{{ url('/register') }}">Create Account</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -188,8 +211,8 @@
                                             <span><i class="fal fa-envelope-open"></i></span>enquiry@miscochat.ng</a>
                                     </li>
                                     <li>
-                                        <a href="tel:778886664">
-                                            <span><i class="fal fa-phone-alt"></i></span> +234 702 693 6724</a>
+                                        <a href="tel:+2349166975341">
+                                            <span><i class="fal fa-phone-alt"></i></span> +234 9166 975 341</a>
                                     </li>
                                 </ul>
                             </div>
@@ -200,7 +223,7 @@
                     <div class="row">
                         <div class="col-xl-6 col-lg-7 col-12">
                             <div class="copyright-left text-center text-lg-start">
-                                <p>©Copy RIght @2023 All Rights Reserved - Miscochat Concept</p>
+                                <p>©Copy RIght 2023 All Rights Reserved - Miscochat Concept</p>
                             </div>
                         </div>
                     </div>

@@ -1794,7 +1794,7 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 }
 
 .breadcrumb-height {
-    padding-top: 300px;
+    padding-top: 230px;
     padding-bottom: 160px;
 }
 
@@ -5526,7 +5526,7 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 
 .tp-testimonial-item {
     background-color: var(--tp-common-yellow-2);
-    padding: 50px 60px;
+    padding: 20px 60px;
     padding-right: 75px;
     border-radius: 20px;
     position: relative;
@@ -5535,7 +5535,7 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .tp-testimonial-item {
-        padding: 50px 30px;
+        padding: 20px 30px;
         padding-right: 30px;
         padding-right: 25px;
     }
@@ -5567,7 +5567,7 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 
 .tp-testimonial-item__text p {
     font-weight: 500;
-    font-size: 22px;
+    font-size: 17px;
     line-height: 40px;
     color: var(--tp-common-black);
     padding-bottom: 20px;

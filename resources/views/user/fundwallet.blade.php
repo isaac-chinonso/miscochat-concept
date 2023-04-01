@@ -47,7 +47,7 @@ Fund Wallet || Miscochat Concept
                 <div class="account-card">
                     <h3 class="account-title">Fund Wallet</h3>
                     <p>Please Enter amount you want to fund your wallet with</p>
-                    <br><br>
+                    <br>
                     <form method="post" action="{{ url('/user/deposit') }}" class="wallet-form">
                         @csrf
                         <div class="row row-cols-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-2">

@@ -21,7 +21,7 @@ Miscochat Concept
                                 <a class="tp-btn" href="{{ url('login') }}">GET STARTED</a>
                             </div>
                             <div class="tp-hero__play-button">
-                                <a class="popup-video" href="assets/img/Screenshot 2023-02-08 021754.png"><i class="fas fa-play"></i></a>
+                                <a class="popup-video img-thumbnail" href="assets/img/dashboard.jpg"><i class="fas fa-play"></i></a>
                                 <span>See Dashboard</span>
                             </div>
                         </div>
@@ -41,8 +41,8 @@ Miscochat Concept
                         <div class="tp-hero-shape-four">
                             <img src="assets/img/slider/hero-star-sm-shape.png" alt="">
                         </div>
-                        <div class="tp-hero__thumb text-start text-lg-end wow tpfadeRight" data-wow-duration=".9s" data-wow-delay="1.2s">
-                            <img src="assets/img/slider/hero-1.png" alt="">
+                        <div class=" text-start text-lg-end wow tpfadeRight" data-wow-duration=".9s" data-wow-delay="1.2s">
+                            <img src="assets/img/slider/hero-11.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@ Miscochat Concept
     <div class="tp-about-area ab-area-sapce pt-120 pb-120">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-xl-5 col-lg-5 order-2 order-lg-1 wow tpfadeLeft" data-wow-duration=".7s" data-wow-delay=".5s">
+                <div class="col-xl-6 col-lg-6 order-2 order-lg-1 wow tpfadeLeft" data-wow-duration=".7s" data-wow-delay=".5s">
                     <div class="tp-ab-wrapper p-relative">
                         <div class="tp-ab-shape-one z-index-3">
                             <img src="assets/img/about/about-shape-1.png" alt="">
@@ -63,16 +63,16 @@ Miscochat Concept
                         <div class="tp-ab-shape-two z-index-3">
                             <img src="assets/img/about/about-circle-shape.png" alt="">
                         </div>
-                        <div class="tp-about-thumb">
-                            <img src="assets/img/about/about-img.jpg" alt="">
+                        <div class="">
+                            <img src="assets/img/about/about11.jpg"alt="">
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-7 col-lg-7 order-1 order-lg-2 wow tpfadeRight" data-wow-duration=".7s" data-wow-delay=".7s">
+                <div class="col-xl-6 col-lg-6 order-1 order-lg-2 wow tpfadeRight" data-wow-duration=".7s" data-wow-delay=".7s">
                     <div class="tp-ab-section-title-box">
                         <h4 class="tp-section-subtitle tp-green-color">Who we are?</h4>
                         <p>Misco is a platform developed by PTECH SOURCE, a Web and Mobile App Development Company located in Ibadan. With misco, you can easily advertise your products and services and also earn daily income by reposting adverts on your social media accounts.</p>
-                        <a class="tp-btn" href="about-us.html">ABOUT US</a>
+                        <a class="tp-btn" href="{{ url('/about') }}">ABOUT US</a>
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@ Miscochat Concept
                         <div class="tp-service-content mb-20">
                             <p class="tp-service-sm-title">Imagine what happens when you get thousands of people with at least 1,000 followers each to post your Advert on their social meddia accounts. Now, that's a true power.
                             </p>
-                            <a class="tp-btn" href="service.html">See all Services</a>
+                            <a class="tp-btn" href="{{ url('/support') }}">Get in Touch</a>
                         </div>
                     </div>
                 </div>
@@ -150,7 +150,7 @@ Miscochat Concept
                                 <div class="tp-service-item__content">
                                     <h4 class="tp-service-sm-title"><a href="{{ url('/register') }}">Earn Steady Daily Income</a></h4>
                                     <div class="tp-service-item__button-link">
-                                        <a href="{{ url('/register') }}.html">
+                                        <a href="{{ url('/register') }}">
                                             <span>
                                                 <svg width="34" height="16" viewBox="0 0 34 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M33.7071 8.70711C34.0976 8.31659 34.0976 7.68342 33.7071 7.2929L27.3431 0.928935C26.9526 0.53841 26.3195 0.53841 25.9289 0.928934C25.5384 1.31946 25.5384 1.95262 25.9289 2.34315L31.5858 8L25.9289 13.6569C25.5384 14.0474 25.5384 14.6805 25.9289 15.0711C26.3195 15.4616 26.9526 15.4616 27.3431 15.0711L33.7071 8.70711ZM-8.74228e-08 9L33 9L33 7L8.74228e-08 7L-8.74228e-08 9Z" fill="currentColor" />
@@ -218,7 +218,7 @@ Miscochat Concept
                         <div class="tp-service-content mb-20">
                             <h4 class="tp-service-sm-title">We love our client and our clients <br> loved us. see all feedback
                             </h4>
-                            <a class="tp-btn" href="about-us.html">See all Feedback</a>
+                            <a class="tp-btn" href="#">See all Feedback</a>
                         </div>
                     </div>
                 </div>
@@ -230,16 +230,16 @@ Miscochat Concept
                                     <i class="fas fa-quote-right"></i>
                                 </div>
                                 <div class="tp-testimonial-item__text">
-                                    <p>Our office is something we are pleased with. We consider it the little magnet; it is wanting to come here and afterward difficult to leave it.</p>
+                                    <p>I really recommend miscochat if youa are looking for a platform to earn and advertise</p>
                                 </div>
                                 <div class="tp-testimonial-item__wrapper d-flex justify-content-between align-items-center">
                                     <div class="tp-testimonial-item__info d-flex align-items-center">
                                         <div class="tp-testimonial-item__info-img">
-                                            <img src="assets/img/testimonial/testi-img-1.png" alt="">
+                                            <img src="assets/img/testimonial/1.png" alt="">
                                         </div>
                                         <div class="tp-testimonial-item__info-text">
-                                            <h4 class="client-name">Wade Warren</h4>
-                                            <span>Founder of Edardx</span>
+                                            <h4 class="client-name">Wade Micheal</h4>
+                                            <span>Mediahub</span>
                                         </div>
                                     </div>
                                     <div class="tp-testimonial-item__ratting d-none d-md-block">
@@ -258,16 +258,16 @@ Miscochat Concept
                                     <i class="fas fa-quote-right"></i>
                                 </div>
                                 <div class="tp-testimonial-item__text">
-                                    <p>He works very smart always fast and ahead of time. He's also a team player Looking forward to working with him in the future</p>
+                                    <p>Miscochat works like magic, placed an advert on the platfrom in less than 48hrs i got massive returns.</p>
                                 </div>
                                 <div class="tp-testimonial-item__wrapper d-flex justify-content-between align-items-center">
                                     <div class="tp-testimonial-item__info d-flex align-items-center">
                                         <div class="tp-testimonial-item__info-img">
-                                            <img src="assets/img/testimonial/testi-img-2.png" alt="">
+                                            <img src="assets/img/testimonial/1.png" alt="">
                                         </div>
                                         <div class="tp-testimonial-item__info-text">
-                                            <h4 class="client-name">Marvin McKinney</h4>
-                                            <span>Founder of Edardx</span>
+                                            <h4 class="client-name">Joy Ibeh</h4>
+                                            <span>Nora Scent</span>
                                         </div>
                                     </div>
                                     <div class="tp-testimonial-item__ratting d-none d-md-block">
@@ -286,15 +286,15 @@ Miscochat Concept
                                     <i class="fas fa-quote-right"></i>
                                 </div>
                                 <div class="tp-testimonial-item__text">
-                                    <p>Sixmart is an Excellent Writer, His magical words added value in growth of our business. Highly Recommended</p>
+                                    <p>Miscochat is an Excellent Platform, His magical adverts added value in growth of our business. Highly Recommended</p>
                                 </div>
                                 <div class="tp-testimonial-item__wrapper d-flex justify-content-between align-items-center">
                                     <div class="tp-testimonial-item__info d-flex align-items-center">
                                         <div class="tp-testimonial-item__info-img">
-                                            <img src="assets/img/testimonial/testi-img-3.png" alt="">
+                                            <img src="assets/img/testimonial/1.png" class="img-circle" alt="">
                                         </div>
                                         <div class="tp-testimonial-item__info-text">
-                                            <h4 class="client-name">Savannah Nguyen</h4>
+                                            <h4 class="client-name">Adams Adekunle</h4>
                                             <span>Founder of Edardx</span>
                                         </div>
                                     </div>
@@ -315,120 +315,21 @@ Miscochat Concept
     </div>
     <!-- tp-service-area-end -->
 
-
-    <!-- tp-blog-area-start -->
-    <div class="tp-blog-area blog-grident-bg blog-space" data-background="assets/img/blog/blog-gridient-shape.png">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-6">
-                    <div class="tp-blog-section-title-box text-center mb-60">
-                        <h4 class="tp-section-subtitle tp-green-color">Our Blog Article</h4>
-                        <h3 class="tp-section-title">Read our Latest stories </h3>
-                    </div>
-                </div>
-                <div class="row gx-20">
-                    <div class="col-xl-4 col-lg-4 wow tpfadeLeft" data-wow-duration=".7s" data-wow-delay=".4s">
-                        <div class="tp-blog-item mb-30">
-                            <div class="tp-blog-item__thumb fix">
-                                <a href="blog-details.html"><img src="assets/img/blog/blog-1.jpg" alt=""></a>
-                            </div>
-                            <div class="tp-blog-item__tag">
-                                <span>Tutorials</span>
-                                <span class="tag-color-green">February. 20.2022</span>
-                            </div>
-                            <div class="tp-blog-item__blog-title">
-                                <h4 class="tp-blog-title-lg"><a href="blog-details.html">How to Increase Your ROI Through scientific SEM?</a>
-                                </h4>
-                            </div>
-                            <div class="tp-blog-item__button">
-                                <div class="tp-link tp-link-green">
-                                    <a href="blog-details.html">
-                                        <svg width="34" height="16" viewBox="0 0 34 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M33.7071 8.70711C34.0976 8.31659 34.0976 7.68342 33.7071 7.2929L27.3431 0.928935C26.9526 0.53841 26.3195 0.53841 25.9289 0.928934C25.5384 1.31946 25.5384 1.95262 25.9289 2.34315L31.5858 8L25.9289 13.6569C25.5384 14.0474 25.5384 14.6805 25.9289 15.0711C26.3195 15.4616 26.9526 15.4616 27.3431 15.0711L33.7071 8.70711ZM-8.74228e-08 9L33 9L33 7L8.74228e-08 7L-8.74228e-08 9Z" fill="#202026" />
-                                        </svg>
-                                        <span>Get Started</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 wow tpfadeLeft" data-wow-duration=".7s" data-wow-delay=".4s">
-                        <div class="tp-blog-item mb-30">
-                            <div class="tp-blog-item__thumb fix">
-                                <a href="blog-details.html"><img src="assets/img/blog/blog-1.jpg" alt=""></a>
-                            </div>
-                            <div class="tp-blog-item__tag">
-                                <span>Tutorials</span>
-                                <span class="tag-color-green">February. 20.2022</span>
-                            </div>
-                            <div class="tp-blog-item__blog-title">
-                                <h4 class="tp-blog-title-lg"><a href="blog-details.html">How to Increase Your ROI Through scientific SEM?</a>
-                                </h4>
-                            </div>
-                            <div class="tp-blog-item__button">
-                                <div class="tp-link tp-link-green">
-                                    <a href="blog-details.html">
-                                        <svg width="34" height="16" viewBox="0 0 34 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M33.7071 8.70711C34.0976 8.31659 34.0976 7.68342 33.7071 7.2929L27.3431 0.928935C26.9526 0.53841 26.3195 0.53841 25.9289 0.928934C25.5384 1.31946 25.5384 1.95262 25.9289 2.34315L31.5858 8L25.9289 13.6569C25.5384 14.0474 25.5384 14.6805 25.9289 15.0711C26.3195 15.4616 26.9526 15.4616 27.3431 15.0711L33.7071 8.70711ZM-8.74228e-08 9L33 9L33 7L8.74228e-08 7L-8.74228e-08 9Z" fill="#202026" />
-                                        </svg>
-                                        <span>Get Started</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 wow tpfadeRight" data-wow-duration=".7s" data-wow-delay=".7s">
-                        <div class="tp-blog-item mb-30">
-                            <div class="tp-blog-item__thumb fix">
-                                <a href="blog-details.html"><img src="assets/img/blog/blog-2.jpg" alt=""></a>
-                            </div>
-                            <div class="tp-blog-item__tag">
-                                <span>Design</span>
-                                <span class="tag-color-green">February. 20.2022</span>
-                            </div>
-                            <div class="tp-blog-item__blog-title">
-                                <h4 class="tp-blog-title-lg"><a href="blog-details.html">ECommerce Marketing Statistics You Should Kno</a></h4>
-                            </div>
-                            <div class="tp-blog-item__button">
-                                <div class="tp-link tp-link-green">
-                                    <a href="blog-details.html">
-                                        <svg width="34" height="16" viewBox="0 0 34 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M33.7071 8.70711C34.0976 8.31659 34.0976 7.68342 33.7071 7.2929L27.3431 0.928935C26.9526 0.53841 26.3195 0.53841 25.9289 0.928934C25.5384 1.31946 25.5384 1.95262 25.9289 2.34315L31.5858 8L25.9289 13.6569C25.5384 14.0474 25.5384 14.6805 25.9289 15.0711C26.3195 15.4616 26.9526 15.4616 27.3431 15.0711L33.7071 8.70711ZM-8.74228e-08 9L33 9L33 7L8.74228e-08 7L-8.74228e-08 9Z" fill="#202026" />
-                                        </svg>
-                                        <span>Get Started</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- tp-blog-area-end -->
-
     <!-- tp-social-area-start -->
     <div class="tp-social-area social-space-bottom fix">
         <div class="container-fluid p-0">
             <div class="row g-0">
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="#">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <a href="https://facebook.com/groups/2796370700613614/" target="_blank">
                         <div class="tp-social-item">
                             <span><i class="fab fa-facebook-f"></i> Facebook</span>
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="#">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <a href="https://instagram.com/miscochatofficial1" target="_blank">
                         <div class="tp-social-item tp-youtube">
                             <span><i class="fab fa-instagram"></i> instagram</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="#">
-                        <div class="tp-social-item tp-twitter">
-                            <span><i class="fab fa-twitter"></i> twitter</span>
                         </div>
                     </a>
                 </div>

@@ -59,7 +59,7 @@ Support || Miscochat Concept
                                     <img src="assets/img/contact/contact-3.png" alt="">
                                 </div>
                                 <div class="contact-loaction">
-                                    <a href="tel:08778886664)">088 (778 886 664)</a>
+                                    <a href="tel:+2349166975341">+234 9166 975 341</a>
                                 </div>
                             </div>
                         </div>
@@ -93,24 +93,17 @@ Support || Miscochat Concept
     <div class="tp-social-area social-space-bottom fix">
         <div class="container-fluid p-0">
             <div class="row g-0">
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="#">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <a href="https://facebook.com/groups/2796370700613614/" target="_blank">
                         <div class="tp-social-item">
                             <span><i class="fab fa-facebook-f"></i> Facebook</span>
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="#">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <a href="https://instagram.com/miscochatofficial1" target="_blank">
                         <div class="tp-social-item tp-youtube">
                             <span><i class="fab fa-instagram"></i> instagram</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="#">
-                        <div class="tp-social-item tp-twitter">
-                            <span><i class="fab fa-twitter"></i> twitter</span>
                         </div>
                     </a>
                 </div>

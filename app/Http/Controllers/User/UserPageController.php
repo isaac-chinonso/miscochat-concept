@@ -29,11 +29,13 @@ class UserPageController extends Controller
     public function dashboard()
     {
         $user = Auth::user();
-        $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
+        $walletBalance = Wallet::where('user_id', $user->id)->sum('balance');
+        $referralearn = Referral::where('referred_by_user', $user->username)->sum('earnings');
+        $data['walletbalance'] = $walletBalance + $referralearn;
         $data['taskearning'] = Transaction::where('user_id', $user->id)->where('type', '=', 'Task Earning')->sum('amount');
         $data['totalspent'] = Transaction::where('user_id', $user->id)->where('type', '=', 'topup')->sum('amount');
-        $data['referralearning'] = Referral::where('referred_by_user', $user->id)->sum('earnings');
-        $data['referrals'] = Referral::where('referred_by_user', $user->id)->count();
+        $data['referralearning'] = Referral::where('referred_by_user', $user->username)->sum('earnings');
+        $data['referrals'] = Referral::where('referred_by_user', $user->username)->count();
         $data['product'] = Product::where('status', 1)->get();
         $data['tasks'] = Task::where('user_id', $user->id)->get();
         return view('user.dashboard', $data);

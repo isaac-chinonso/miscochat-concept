@@ -143,7 +143,7 @@ Sell || Miscochat Concept
                     <div class="intro-icon "><i class="fas fa-user-plus "></i></div>
                     <div class="intro-content ">
                         <h5>Refferal commision</h5>
-                        <p>Earn an instant refferal commision of N500 when you refer someone to become a member on Miscokit. The more you refer, the more you earn. Click here to view how refferal works.</p>
+                        <p>Earn an instant refferal commision of N2000 when you refer someone to become a member on Miscokit. The more you refer, the more you earn. Click here to view how refferal works.</p>
                     </div>
                 </div>
             </div>

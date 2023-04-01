@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Referral;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +25,8 @@ class PageController extends Controller
 
     public function about()
     {
-        return view('frontend.about');
+        $data['totalmembers'] = User::where('role_id', '=', 2)->count();
+        return view('frontend.about', $data);
     }
 
     public function marketplace()
@@ -43,6 +45,16 @@ class PageController extends Controller
     public function support()
     {
         return view('frontend.support');
+    }
+
+    public function buycoupon()
+    {
+        return view('frontend.coupon');
+    }
+
+    public function policy()
+    {
+        return view('frontend.policy');
     }
 
     public function register()

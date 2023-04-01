@@ -33,6 +33,10 @@ Route::get('product-details/{slug}', [PageController::class, 'productdetails'])-
 
 Route::get('/support', [PageController::class, 'support']);
 
+Route::get('/buy-coupon', [PageController::class, 'buycoupon']);
+
+Route::get('/privacy-policy', [PageController::class, 'policy']);
+
 Route::post('signin', [UserController::class, 'signin']);
 
 Route::get('/register', [PageController::class, 'register']);

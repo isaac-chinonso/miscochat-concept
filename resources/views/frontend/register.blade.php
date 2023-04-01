@@ -70,8 +70,8 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Referred By</label>
-                                            <input type="text" class="form-control" name="referred_by_user" placeholder="Enter Referral Username">
+                                            <label>REFERRED By (Optional)</label>
+                                            <input type="text" class="form-control" name="referred_by_user" placeholder="Ebube48">
                                         </div>
                                     </div>
                                 </div>
