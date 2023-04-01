@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Wallet;
 use App\Models\Profile;
 use App\Http\Controllers\Controller;
+use App\Models\Bank;
 use App\Models\Referral;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -86,6 +87,14 @@ class UserController extends Controller
         $referral->earnings = 2000.00;
         $referral->save();
 
+        $bank = new Bank();
+        $bank->user_id = $user->id;
+        $bank->bank_name = '';
+        $bank->account_num = '';
+        $bank->account_name = '';
+        $bank->save();
+
+
         //Save Record into Wallet DB
         $wallet = new Wallet();
         $wallet->user_id = $user->id;
@@ -98,7 +107,7 @@ class UserController extends Controller
 
         \Session::flash('Success_message', 'You have successfully registered');
 
-        return redirect()->route('userdashboard');
+        return redirect()->intended(route('userdashboard'));
     }
 
     // Update profile function

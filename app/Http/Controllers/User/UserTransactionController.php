@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Subscription;
 use App\Models\Topup;
 use App\Models\Transaction;
 use App\Models\Wallet;
@@ -15,8 +16,8 @@ class UserTransactionController extends Controller
 {
     public function deposit(Request $request)
     {
-         // Validation
-         $this->validate($request, [
+        // Validation
+        $this->validate($request, [
             'amount' => 'required',
         ]);
 
@@ -35,11 +36,10 @@ class UserTransactionController extends Controller
         $transaction->user_id = $user->id;
         $transaction->amount = $amount;
         $transaction->type = 'deposit';
-        $transaction->status = 0;
+        $transaction->status = 1;
         $transaction->save();
 
         return Paystack::getAuthorizationUrl($data)->redirectNow();
-        
     }
 
     public function withdraw(Request $request)
@@ -106,5 +106,54 @@ class UserTransactionController extends Controller
 
         \Session::flash('Success_message', 'Topup Request Placed Successfully');
         return back();
+    }
+
+    public function deletetransaction($id)
+    {
+        // Delete Transaction History
+        $transaction = Transaction::where('id', $id)->first();
+        $transaction->delete();
+
+        \Session::flash('Success_message', 'You Have Successfully Deleted Transaction History');
+
+        return back();
+    }
+
+    public function advertsubscription(Request $request)
+    {
+         // Validation
+         $validator = Validator::make($request->all(), [
+            'amount' => 'required|numeric|min:4000',
+        ]);
+
+        $user = Auth::user();
+        $walletfund = Wallet::where('user_id', $user->id)->first();
+        $amount = $request->input('amount');
+
+        if ($walletfund->balance < $amount) {
+            return redirect()->back()->with('warning_message', 'Insufficient balance!');
+        } else {
+
+            // Create a new subscription for the user
+            $subscription = new Subscription();
+            $subscription->user_id = $user->id;
+            $subscription->amount = $amount;
+            $subscription->starts_at = now();
+            $subscription->ends_at = now()->addMonth();
+            $subscription->save();
+
+            // Deduct the subscription amount from the user's wallet balance
+            $transaction = new Transaction();
+            $transaction->user_id = $user->id;
+            $transaction->amount = $amount;
+            $transaction->type = 'advert subscription';
+            $transaction->status = 1;
+            $transaction->save();
+
+            $walletfund->balance -= $amount;
+            $walletfund->save();
+
+            return redirect()->back()->with('Success_message', 'You have successfully Subscribed!');
+        }
     }
 }

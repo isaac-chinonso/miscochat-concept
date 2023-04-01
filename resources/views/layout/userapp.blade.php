@@ -181,10 +181,10 @@
         </ul>
         <div class="nav-info-group ">
             <div class="nav-info "><i class="icofont-ui-touch-phone "></i>
-                <p><small>call us</small><span>(+880) 183 8288 389</span></p>
+                <p><small>call us</small><span>+234 702 693 6724</span></p>
             </div>
             <div class="nav-info "><i class="icofont-ui-email "></i>
-                <p><small>email us</small><span>support@example.com</span></p>
+                <p><small>email us</small><span>enquiry@miscochat.ng</span></p>
             </div>
         </div>
 

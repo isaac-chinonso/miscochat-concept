@@ -98,10 +98,38 @@ Fund Wallet || Miscochat Concept
                                             @endif
                                         </td>
                                         <td>
-                                            <button class="btn btn-success" style="padding: 3px 6px 3px 6px;text-transform:capitalize;font-size:12px;">Pay Now</button>
-                                            <button class="btn btn-danger" style="padding: 3px 6px 3px 6px;text-transform:capitalize;font-size:12px;">Delete</button>
+                                            <form method="post" action="{{ url('/user/deposit') }}">
+                                                @csrf
+                                                <input type="hidden" name="email" value="{{ Auth::user()->email }}">
+                                                <input type="hidden" name="metadata" value="{{ json_encode($array = ['user_id' => Auth::user()->id,'firstname' => Auth::user()->fname,'lastname' => Auth::user()->lname,'phone' => Auth::user()->phone,]) }}">
+                                                <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}{{ Auth::user()->lname }}">
+                                                <input type="hidden" name="amount" value="{{ $transact->amount }}">
+                                                <input type="hidden" name="key" value="{{ config('paystack.secretKey') }}">
 
+                                                <button class="btn btn-success" type="submit" style="padding: 3px 6px 3px 6px;text-transform:capitalize;font-size:12px;">Pay Now</button>
+                                            </form>
+                                            <button class="btn btn-danger" style="padding: 3px 6px 3px 6px;text-transform:capitalize;font-size:12px;" data-toggle="modal" data-target="#responsive-modal2{{ $transact->id }}">Delete</button>
                                         </td>
+                                        <!-- modal content -->
+                                        <div id="responsive-modal2{{ $transact->id }}" class="modal">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title" id="myModalLabel">Delete Transaction History</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h4><strong>Confirm Deletion</strong></h4>
+                                                        <p>Are you sure you want to Delete transaction of ₦{{ number_format($transact->amount, 0, '.', ', ') }}</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" style="padding: 7px 8px 7px 8px;font-size:12px;" data-dismiss="modal">Close</button>
+                                                        <a href="{{ route('deleteusertransaction',$transact->id) }}" class="btn btn-danger" style="padding: 7px 8px 7px 8px;font-size:12px;">Delete Transaction</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal -->
                                     </tr>
                                     <?php $number++; ?>
                                     @endforeach

@@ -82,6 +82,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'before' => 'user'], f
 
     Route::get('/payment/callback', [UserPaymentController::class, 'handleGatewayCallback']);
 
+    Route::get('delete-transaction/{id}', [UserTransactionController::class, 'deletetransaction'])->name('deleteusertransaction');
+
     Route::get('/place-withdrawal', [UserPageController::class, 'placewithdrawal']);
 
     Route::post('/withdraw', [UserTransactionController::class, 'withdraw']);
@@ -89,6 +91,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'before' => 'user'], f
     Route::get('/airtime-data-topup', [UserPageController::class, 'topuprequest']);
 
     Route::post('/topup', [UserTransactionController::class, 'topup']);
+
+    Route::post('/subscribe', [UserTransactionController::class, 'advertsubscription']);
 
     Route::get('/transaction-history', [UserPageController::class, 'transaction']);
 

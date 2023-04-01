@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
+use App\Models\Transaction;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -48,6 +50,14 @@ class UserPaymentController extends Controller
                 return redirect()->back()->with('warning_message', 'Payment Exist');
             } else {
                 $payment->save();
+
+                $walletfund = Wallet::find($user->id);
+                $walletfund->amount = $paymentDetails['data']['amount'];
+                $walletfund->balance += $paymentDetails['data']['amount'];
+                $walletfund->save();
+
+                Transaction::where(['user_id' => $user->id])
+                ->update(array('status' => 1));
 
                 \Session::flash('Success_message', '✔ Payment made successfully');
 

@@ -43,7 +43,7 @@ Update Bank Details || Miscochat Concept
                                         <div class="form-group">
                                             <label class="form-label">Select Bank</label>
                                             <select class="form-control" name="bank_name">
-                                                <option value="{{ Auth::user()->bank->first()->bank_name }}" selected>{{ Auth::user()->bank->first()->bank_name }}</option>
+                                                <option value="{{ $bankdetails->bank_name }}" selected>{{ $bankdetails->bank_name }}</option>
                                                 <option value="First Bank of Nigeria">First Bank of Nigeria</option>
                                                 <option value="Titan Bank">Titan Bank</option>
                                                 <option value="Parallex Bank">Parallex Bank</option>
@@ -88,13 +88,13 @@ Update Bank Details || Miscochat Concept
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="form-label">Account Number</label>
-                                            <input type="text" class="form-control" name="account_num" value="{{ Auth::user()->bank->first()->account_num }}">
+                                            <input type="text" class="form-control" name="account_num" value="{{ $bankdetails->account_num }}">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="form-label">Account Name</label>
-                                            <input type="text" class="form-control" name="account_name" value="{{ Auth::user()->bank->first()->account_num }}">
+                                            <input type="text" class="form-control" name="account_name" value="{{ $bankdetails->account_num }}">
                                         </div>
                                     </div>
                                 </div>

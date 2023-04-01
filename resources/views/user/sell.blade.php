@@ -4,9 +4,13 @@ Sell || Miscochat Concept
 @endsection
 @section('content')
 
+
 <section class="inner-section wallet-part">
     <div class="container">
         <div class="row">
+            @include('include.success')
+            @include('include.warning')
+            @include('include.error')
             <div class="col-md-8">
                 <div class="account-card">
                     <img src="../assetsuser/images/sell.jpg" class="img-thumbnail" alt="product">
@@ -15,6 +19,12 @@ Sell || Miscochat Concept
                         You can now advertise and place your products/services in the front of
                         thousands of people that use our website app everyday.
                     </p><br>
+                    @if ($subscription && Carbon::now()->between($subscription->starts_at, $subscription->ends_at))
+                    <button>Post Product</button>
+                    <div class="col-md-6" align="right">
+                        <button class="btn btn-inlin" style="padding: 7px 8px 7px 8px;"><a href="{{ url('/user/post-product') }}">Continue</a></button>
+                    </div>
+                    @elseif ($subscription && $subscription->ends_at >= Carbon::now())
                     <div class="alert alert-info" role="alert" style="padding: 15px;border-radius:7px;">
                         <h5 align="left">ADVERT DURATION: 1 MONTH</h5>
                         <p align="left" style="line-height: 30px;font-size:14px;">Please note that your advert will be visible on the website
@@ -26,9 +36,33 @@ Sell || Miscochat Concept
                             <h6>Advert Fee: #1,000</h6>
                         </div>
                         <div class="col-md-6" align="right">
-                            <button class="btn btn-inlin" style="padding: 7px 8px 7px 8px;"><a href="{{ url('/user/post-product') }}">Continue</a></button>
+                            <form method="post" action="{{ url('/user/subscribe') }}">
+                                @csrf
+                                <input type="hidden" name="amount" value="1000">
+                                <button class="btn btn-inlin" type="submit" style="padding: 7px 8px 7px 8px;">Pay Now</button>
+                            </form>
                         </div>
                     </div>
+                    @else
+                    <div class="alert alert-info" role="alert" style="padding: 15px;border-radius:7px;">
+                        <h5 align="left">ADVERT DURATION: 1 MONTH</h5>
+                        <p align="left" style="line-height: 30px;font-size:14px;">Please note that your advert will be visible on the website
+                            within a period of <strong>1 Month</strong>. You have to buy and place another
+                            advert after one month if you want your advert to remain visible.</p>
+                    </div>
+                    <div class="row row-cols-2">
+                        <div class="col-md-6"><br>
+                            <h6>Advert Fee: #1,000</h6>
+                        </div>
+                        <div class="col-md-6" align="right">
+                            <form method="post" action="{{ url('/user/subscribe') }}">
+                                @csrf
+                                <input type="hidden" name="amount" value="1000">
+                                <button class="btn btn-inlin" type="submit" style="padding: 7px 8px 7px 8px;">Pay Now</button>
+                            </form>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
             <div class="col-md-4">

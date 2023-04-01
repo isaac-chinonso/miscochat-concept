@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bank;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Referral;
+use App\Models\Subscription;
 use App\Models\Task;
 use App\Models\Topup;
 use App\Models\Topup_Plan;
@@ -15,6 +17,7 @@ use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class UserPageController extends Controller
 {
@@ -109,6 +112,7 @@ class UserPageController extends Controller
     public function bank()
     {
         $user = Auth::user();
+        $data['bankdetails'] = Bank::where('user_id', $user->id)->first();
         $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
         return view('user.bankdetails', $data);
     }
@@ -124,6 +128,7 @@ class UserPageController extends Controller
     {
         $user = Auth::user();
         $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
+        $data['subscription'] = Subscription::where('user_id', $user->id)->first();
         return view('user.sell', $data);
     }
 

@@ -92,20 +92,17 @@ Dashboard || Miscochat Concept
         </div>
 </section>
 
-
-
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="banner-btn" align="center">
-                <h4 style="text-align:center;"><strong>Refferal ID: {{ Auth::user()->username }} </strong> </h4> <br>
+                <h4 style="text-align:center;"><strong>Your Refferal ID: {{ Auth::user()->username }} </strong> </h4> <br>
                 <a class="btn btn-inline" href="{{ url('/user/fund-wallet') }}"><i class="fas fa-credit-card"></i><span>FUND</span></a>
                 <a class="btn btn-outline" href="{{ url('/user/place-withdrawal') }}"><i class="fa fa-wallet"></i><span>WITHDRAW</span></a>
             </div><br><br>
         </div>
     </div>
 </div>
-
 <section class="inner-section wallet-part">
     <div class="container">
         <div class="row">

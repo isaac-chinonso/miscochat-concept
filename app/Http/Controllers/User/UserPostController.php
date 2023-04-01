@@ -241,9 +241,11 @@ class UserPostController extends Controller
         $users = User::all();
         foreach ($users as $user) {
 
-            $wallet = new Wallet();
+            $wallet = new Bank();
             $wallet->user_id = $user->id;
-            $wallet->balance = 0;
+            $wallet->bank_name = '';
+            $wallet->account_num = '';
+            $wallet->account_name = '';
             $wallet->save();    
 
         }
