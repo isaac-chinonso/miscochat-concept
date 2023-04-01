@@ -121,9 +121,9 @@ class UserTransactionController extends Controller
 
     public function advertsubscription(Request $request)
     {
-         // Validation
-         $validator = Validator::make($request->all(), [
-            'amount' => 'required|numeric|min:4000',
+          // Validation
+        $this->validate($request, [
+            'amount' => 'required',
         ]);
 
         $user = Auth::user();
