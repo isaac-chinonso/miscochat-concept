@@ -230,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class,
         'Carbon' => Illuminate\Support\Carbon::class,
+        'Input' => Illuminate\Support\Facades\Input::class,
 
     ],
 

@@ -34,7 +34,7 @@ About us || Miscochat Concept
                 <div class="col-xl-5 col-lg-6 wow tpfadeLeft" data-wow-duration=".7s" data-wow-delay=".5s">
                     <div class="ab-inner-content">
                         <h4 class="ab-title-xs mb-25">Perform Social Tasks and Earn</h4>
-                        
+
                         <div class="tp-inner-list">
                             <ul>
                                 <li style="font-size: 14px;"><i class="far fa-check"></i> Earn daily income of up to ₦5,000 by following, liking, commenting, sharing, retweeting or posting adverts for businesses on your social media.</li>
@@ -67,8 +67,13 @@ About us || Miscochat Concept
     <!-- tp-about-area-end -->
 
     <!-- tp-counter-area-strat -->
-    <div class="tp-counter-area pb-90">
+    <div class="tp-counter-area" style="padding-bottom: 20px;">
         <div class="container">
+            <div class="row">
+                <div class="col-md-12" align="center">
+                    <img src="assets/img/googleplay.png">
+                </div>
+            </div><br>
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-30 wow tpfadeUp" data-wow-duration=".7s" data-wow-delay=".7s">
                     <div class="counter-item text-center">

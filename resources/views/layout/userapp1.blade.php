@@ -35,7 +35,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Perform Social Tasks and Earn Steady Figures Daily" />
     <meta property="og:description" content="Earn steady daily income by performing social media tasks such as Following, Liking, Commenting, Sharing, Retweeting, App Reviews etc." />
-    <meta property="og:image" content="https://miscochat.ng/assets/img/logo/logo.png" />
+    <meta property="og:image" content="https://miscochat.ng/assets/img/logo/logo1.png" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNJ2P1BFBG"></script>
     <script>
@@ -100,9 +100,9 @@
         <div class="container">
             <div class="header-content">
                 <div class="header-media-group"><button class="header-user"><img src="../../assetsuser/images/user.png" alt="user"></button>
-                    <a href="{{ url('/user/dashboard') }}"><img src="../../assetsuser/images/logo.png" alt="logo"></a><button class="header-src"><i class="fas fa-search"></i></button>
+                    <a href="{{ url('/user/dashboard') }}"><img src="../../assetsuser/images/logo1.png" alt="logo"></a><button class="header-src"><i class="fas fa-search"></i></button>
                 </div>
-                <a href="{{ url('/user/dashboard') }}" class="header-logo"><img src="../../assetsuser/images/logo.png" alt="logo"></a>
+                <a href="{{ url('/user/dashboard') }}" class="header-logo"><img src="../../assetsuser/images/logo1.png" alt="logo"></a>
                 <a href="{{ url('/user/dashboard') }}" class="header-widget" title="My Account"><img src="../../assetsuser/images/user.png" alt="user"><span>Welcome, {{ Auth::user()->username }}</span></a>
                 <form class="header-form"><input type="text" placeholder="Search anything..."><button><i class="fas fa-search"></i></button></form>
 
@@ -184,7 +184,7 @@
     </div>
     <aside class="nav-sidebar ">
         <div class="nav-header ">
-            <a href="# "><img src="../assetsuser/images/logo.png " alt="logo "></a><button class="nav-close "><i class="icofont-close "></i></button>
+            <a href="# "><img src="../assetsuser/images/logo1.png " alt="logo "></a><button class="nav-close "><i class="icofont-close "></i></button>
         </div>
         <div class="nav-content ">
             <a href="# "><img src="../assetsuser/images/attachment_86448295.gif " alt="logo "></a><button class="nav-close "><i class="icofont-close "></i></button>
@@ -230,7 +230,7 @@
             <div class="row">
                 <div class="col-sm-12 col-xl-12 text-center">
                     <div class="footer-widget ">
-                        <a class="footer-logo " href="# "><img src="../../assetsuser/images/logo.png " alt="logo "></a>
+                        <a class="footer-logo " href="# "><img src="../../assetsuser/images/logo1.png " alt="logo "></a>
                         <p class="footer-desc ">Miscokit is the best platform best platform best platform best platform ever.</p>
                         <ul class="footer-social ">
                             <li>

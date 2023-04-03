@@ -26,7 +26,9 @@ class AdminPageController extends Controller
 
     public function dashboard()
     {
-        $data['walletbalance'] = Wallet::sum('balance');
+        $walletBalance = Wallet::sum('balance');
+        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $data['totalbalance'] = $walletBalance + $referralearn;
         $data['products'] = Product::where('status', 1)->count();
         $data['orders'] = Order::count();
         $data['users'] = User::where('role_id', 2)->count();

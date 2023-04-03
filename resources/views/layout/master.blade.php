@@ -36,7 +36,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Perform Social Tasks and Earn Steady Figures Daily" />
     <meta property="og:description" content="Earn steady daily income by performing social media tasks such as Following, Liking, Commenting, Sharing, Retweeting, App Reviews etc." />
-    <meta property="og:image" content="https://miscochat.ng/assets/img/logo/logo.png" />
+    <meta property="og:image" content="https://miscochat.ng/assets/img/logo/logo1.png" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNJ2P1BFBG"></script>
@@ -71,7 +71,7 @@
                     <div class="col-xl-2 col-lg-2 col-md-4 col-6">
                         <div class="tp-logo tp-logo-border">
                             <a href="{{ url('/') }}">
-                                <img src="assets/img/logo/logo.png" alt="">
+                                <img src="assets/img/logo/logo1.png" alt="">
                             </a>
                         </div>
                     </div>

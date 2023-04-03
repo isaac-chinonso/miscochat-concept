@@ -17,6 +17,8 @@ class PageController extends Controller
         $data['highest'] = DB::table('referrals')
                 ->select('referred_by_user', DB::raw('SUM(earnings) as total_earnings'))
                 ->groupBy('referred_by_user')
+                ->join('users', 'referrals.user_id', '=', 'users.id')
+                ->where('users.activated', '=', 1)
                 ->orderByDesc('total_earnings')
                 ->take(10)
                 ->get();

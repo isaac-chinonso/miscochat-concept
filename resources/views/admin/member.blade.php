@@ -28,7 +28,7 @@ Members || Miscochat Concept
         <section class="content">
             <div class="row">
                 <div class="col-12">
-                @include('include.success')
+                    @include('include.success')
                     @include('include.warning')
                     @include('include.error')
                     <div class="box">
@@ -48,6 +48,7 @@ Members || Miscochat Concept
                                             <th>Gender</th>
                                             <th>Religion</th>
                                             <th>Location</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -66,9 +67,21 @@ Members || Miscochat Concept
                                             <td>{{ $use->religion }}</td>
                                             <td>{{ $use->location }}</td>
                                             <td>
-                                                <button class="btn-primary btn-sm" data-toggle="modal" data-target="#modal-default{{ $use->id }}">Make Sub Admin</button>
+                                                @if($use->status == 0)
+                                                <span class="badge bg-danger">Disabed</span>
+                                                @elseif($use->status == 1)
+                                                <span class="badge bg-success">Active</span>
+                                                @endif
                                             </td>
-                                            <!-- modal Area -->
+                                            <td>
+                                                <button class="btn-primary btn-sm" data-toggle="modal" data-target="#modal-default{{ $use->id }}">Make Sub Admin</button><br>
+                                                @if($use->status == 0)
+                                                <button class="btn-success btn-sm" data-toggle="modal" data-target="#modal-activate{{ $use->id }}">Activate User</button>
+                                                @elseif($use->status == 1)
+                                                <button class="btn-danger btn-sm" data-toggle="modal" data-target="#modal-disable{{ $use->id }}">Disable User</button>
+                                                @endif
+                                            </td>
+                                            <!-- Delete modal Area -->
                                             <div class="modal fade" id="modal-default{{ $use->id }}">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -90,7 +103,53 @@ Members || Miscochat Concept
                                                 </div>
                                                 <!-- /.modal-dialog -->
                                             </div>
-                                            <!-- /.modal -->
+                                            <!-- /.Delete modal -->
+                                            <!-- Activate modal Area -->
+                                            <div class="modal fade" id="modal-activate{{ $use->id }}">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Activate User</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h4><strong>Confirm Activation</strong></h4>
+                                                            <p>Are you sure you want to Activate <strong> {{ $use->username }}</strong> </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                            <a href="{{ route('activateuser',$use->id) }}" class="btn btn-primary float-right">Activate User</a>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.modal-content -->
+                                                </div>
+                                                <!-- /.modal-dialog -->
+                                            </div>
+                                            <!-- /.Activate modal -->
+                                             <!-- Disable modal Area -->
+                                             <div class="modal fade" id="modal-disable{{ $use->id }}">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Disable User</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h4><strong>Confirm Action</strong></h4>
+                                                            <p>Are you sure you want to Disable <strong> {{ $use->username }}</strong> </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                            <a href="{{ route('disableuser',$use->id) }}" class="btn btn-warning float-right">Disable User</a>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.modal-content -->
+                                                </div>
+                                                <!-- /.modal-dialog -->
+                                            </div>
+                                            <!-- /.Activate modal -->
                                         </tr>
                                         <?php $number++; ?>
                                         @endforeach

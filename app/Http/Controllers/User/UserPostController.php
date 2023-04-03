@@ -105,7 +105,7 @@ class UserPostController extends Controller
         $image->move($destination, $filename);
 
         $user = Auth::user();
-        $walletfund = Wallet::find($user->id);
+        $walletfund = Wallet::where('user_id', $user->id)->first();
         $amount = $request->input('amount');
         if ($walletfund->balance < $amount) {
             return redirect()->route('userfundwallet')->with('warning_message', 'Insufficient balance!');
@@ -127,6 +127,48 @@ class UserPostController extends Controller
         }
 
         \Session::flash('Success_message', 'Advert Task Submitted Successfully');
+
+        return redirect()->route('userorderfee');
+    }
+
+    // Save Advert Task
+    public function saveadvertengagement(Request $request)
+    {
+        // Validation
+        $this->validate($request, [
+            'platform' => 'required',
+            'quantity' => 'required',
+            'package' => 'required',
+            'gender' => 'required',
+            'religion' => 'required',
+            'location' => 'required',
+            'amount' => 'required',
+            'caption' => 'required',
+        ]);
+
+        $user = Auth::user();
+        $walletfund = Wallet::where('user_id', $user->id)->first();
+        $amount = $request->input('amount');
+        if ($walletfund->balance < $amount) {
+            return redirect()->route('userfundwallet')->with('warning_message', 'Insufficient balance!');
+        } else {
+            // Save Record into Order DB
+            $advertorder = new Order();
+            $advertorder->user_id = $user->id;
+            $advertorder->platform = $request->input('platform');
+            $advertorder->quantity = $request->input('quantity');
+            $advertorder->package = $request->input('package');
+            $advertorder->gender = $request->input('gender');
+            $advertorder->religion = $request->input('religion');
+            $advertorder->location = $request->input('location');
+            $advertorder->amount = $amount;
+            $advertorder->caption = $request->input('caption');
+            $advertorder->image = $request->input('image');
+            $advertorder->status = 0;
+            $advertorder->save();
+        }
+
+        \Session::flash('Success_message', 'Advert Engagement Submitted Successfully');
 
         return redirect()->route('userorderfee');
     }
@@ -206,7 +248,7 @@ class UserPostController extends Controller
 
         $task = Task::where('id', $id)->where('user_id', $user->id)->first();
 
-        $taskamount = $task->order->package - 50;
+        $taskamount = $task->order->package - (35/100)*$task->order->package;
 
         $image = $request['image'];
         $filename = time() . '.' . $image->getClientOriginalExtension();

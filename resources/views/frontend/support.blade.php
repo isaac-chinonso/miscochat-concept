@@ -92,6 +92,11 @@ Support || Miscochat Concept
     <!-- tp-social-area-start -->
     <div class="tp-social-area social-space-bottom fix">
         <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-md-12" align="center">
+                    <img src="assets/img/googleplay.png">
+                </div>
+            </div>
             <div class="row g-0">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <a href="https://facebook.com/groups/2796370700613614/" target="_blank">

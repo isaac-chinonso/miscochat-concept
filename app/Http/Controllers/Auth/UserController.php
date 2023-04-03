@@ -149,6 +149,29 @@ class UserController extends Controller
         return back();
     }
 
+    public function disableuser($id)
+    {
+        // Disable User Account
+        User::where(['id' => $id])
+            ->update(array('status' => 0));
+
+        \Session::flash('Success_message', '✔ User Disabled Successfully');
+
+        return back();
+    }
+
+    public function activateuser($id)
+    {
+        // Activate User Account
+        User::where(['id' => $id])
+            ->update(array('status' => 1));
+
+        \Session::flash('Success_message', '✔ User Activated Successfully');
+
+        return back();
+    }
+
+
     // Logout Function
     public function logout()
     {

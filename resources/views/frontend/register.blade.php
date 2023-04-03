@@ -26,14 +26,14 @@
             <div class="row justify-content-center">
                 <div class="col-sm-10 col-md-8">
                     <div class="user-form-logo">
-                        <a href="{{ url('/') }}"><img src="assetsuser/images/logo.png" alt="logo"></a>
+                        <a href="{{ url('/') }}"><img src="assetsuser/images/logo1.png" alt="logo"></a>
                     </div>
                     <div class="user-form-card">
                         @include('include.success')
                         @include('include.warning')
                         @include('include.error')
                         <div class="user-form-title">
-                            <h2>Sign Up on Miscochat Concept!</h2>
+                            <h2>Sign Up on Miscochat!</h2>
                             <p>Registration is Fast and Free</p>
                         </div>
                         <div class="user-form-group">

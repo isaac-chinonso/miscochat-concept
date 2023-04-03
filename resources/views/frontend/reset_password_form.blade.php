@@ -26,7 +26,7 @@
             <div class="row justify-content-center">
                 <div class="col-sm-10 col-md-6">
                     <div class="user-form-logo">
-                        <a href="{{ url('/') }}"><img src="https://miscochat.ng/assetsuser/images/logo.png" alt="logo"></a>
+                        <a href="{{ url('/') }}"><img src="https://miscochat.ng/assetsuser/images/logo1.png" alt="logo"></a>
                     </div>
                     <div class="user-form-card">
                         @include('include.success')

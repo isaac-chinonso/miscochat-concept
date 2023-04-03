@@ -124,7 +124,11 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'before' => 'user'], f
 
     Route::get('/social-buy', [UserPageController::class, 'socialbuy']);
 
+    Route::get('/social-engage', [UserPageController::class, 'socialengage']);
+
     Route::post('/save-advert-task', [UserPostController::class, 'saveadverttask']);
+
+    Route::post('/save-advert-engagement', [UserPostController::class, 'saveadvertengagement']);
 
     Route::get('/orders', [UserPageController::class, 'orderlist'])->name('userorder');
 
@@ -137,6 +141,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'before' => 'admin'],
     Route::get('/dashboard', [AdminPageController::class, 'dashboard'])->name('admindashboard');
 
     Route::get('/members', [AdminPageController::class, 'member']);
+
+    Route::get('/disable-user/{id}', [UserController::class, 'disableuser'])->name('disableuser');
+
+    Route::get('/activate-user/{id}', [UserController::class, 'activateuser'])->name('activateuser');
 
     Route::get('/subadmins', [AdminPageController::class, 'subadmins']);
 

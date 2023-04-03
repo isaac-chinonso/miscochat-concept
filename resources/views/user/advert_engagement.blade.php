@@ -41,14 +41,14 @@ Advertise || Miscochat Concept
                 <h3 class="text-center">Advertise on Social Media</h3>
                 <hr>
                 <p style="font-size: 13px;">
-                    Adverts tasks are created to get people to post your adverts on various social media platforms
+                    Engagement tasks are created to get people to perform simple tasks for you on their social media account and other related accounts. Check below to see the price of creating various engagement tasks:
                 </p><br>
-                <form method="post" action="{{ url('/user/save-advert-task') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ url('/user/save-advert-engagement') }}">
                     @csrf
                     <div class="row row-cols-1 row-cols-md-1 row-cols-lg-1 row-cols-xl-1">
                         <div class="col">
                             <label style="font-size: 13px;"> Select Platform </label><br>
-                            <small style="font-size: 9px;">Please select the social media platform you want us to perform this action</small>
+                            <small style="font-size: 9px;">Please select the platform you want us to perform this action</small>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="form-control input-group-text"><i class="fa fa-bars"></i></span>
@@ -56,11 +56,19 @@ Advertise || Miscochat Concept
                                 <select class="form-control" name="platform">
                                     <option selected disabled>✔ Select Plaform</option>
                                     <hr>
-                                    <option value="Whatsapp Status">Whatsapp Status</option>
-                                    <option value="Facebook">Facebook</option>
-                                    <option value="Instagram">Instagram</option>
-                                    <option value="Twitter">Twitter </option>
-                                    <option value="Tiktok">Tiktok</option>
+                                    <option value="Instagram, Twitter, Tiktok Follower"> Instagram, Twitter, Tiktok Follower</option>
+                                    <option value="Facebook, Instagram, Twitter, Tiktok Likes">Facebook, Instagram, Twitter, Tiktok Likes</option>
+                                    <option value="Audiomack Follower">Audiomack Follower</option>
+                                    <option value="Facebook, Instagram, Twitter, Tiktok Comments">Facebook, Instagram, Twitter, Tiktok Comments </option>
+                                    <option value="Youtube Subscribers">Youtube Subscribers</option>
+                                    <option value="Youtube Views, likes and comments">Youtube Views, likes and comments</option>
+                                    <option value="Playstore download and review">Playstore download and review</option>
+                                    <option value="Facebook Share">Facebook Share</option>
+                                    <option value="Twitter Retweet">Twitter Retweet</option>
+                                    <option value="Whatsapp Whatsapp Group Member">Whatsapp Whatsapp Group Member</option>
+                                    <option value="Telegram Telegram Group/Channel Member">Telegram Telegram Group/Channel Member</option>
+                                    <option value="Apple Store Download and Review">Apple Store Download and Review</option>
+
                                 </select>
                             </div>
 
@@ -88,11 +96,18 @@ Advertise || Miscochat Concept
                                     <select class="form-control summable" name="package">
                                         <option selected disabled>✔ Select Package</option>
                                         <hr>
-                                        <option value="100.00">Whatsapp Status - ₦100</option>
-                                        <option value="150.00">Facebook - ₦150</option>
-                                        <option value="150.00">Instagram - ₦150</option>
-                                        <option value="150.00">Twitter - ₦150</option>
-                                        <option value="150.00">Tiktok - ₦150</option>
+                                        <option value="5.00">Instagram, Twitter, Tiktok - ₦5 Per Follow</option>
+                                        <option value="5.00">Facebook, Instagram, Twitter, Tiktok - ₦5 Per Likes</option>
+                                        <option value="20.00">Audiomack - ₦20 per follower</option>
+                                        <option value="30.00">Facebook, Instagram, Twitter, Tiktok - ₦30 Per Comments</option>
+                                        <option value="50.00">Youtube - ₦50 Per Subscriber</option>
+                                        <option value="50.00">Youtube - ₦50 Per View, likes and comments</option>
+                                        <option value="50.00">Playstore - ₦50 Per download and review</option>
+                                        <option value="100.00">Facebook - ₦100 Per Share</option>
+                                        <option value="100.00">Twitter - ₦100 Per Retweet</option>
+                                        <option value="100.00">Whatsapp - ₦100 Per Whatsapp Group Member</option>
+                                        <option value="100.00">Telegram - ₦100 Per Telegram Group/Channel Member</option>
+                                        <option value="100.00">Apple Store - ₦100 Per Download and Review</option>
                                     </select>
                                 </div>
                             </div>
@@ -189,13 +204,13 @@ Advertise || Miscochat Concept
                                 </div>
                             </div>
                             <div class="col">
-                                <label style="font-size: 13px;"> Upload Advert Image </label>
+                                <label style="font-size: 13px;"> Enter Your Link </label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="form-control input-group-text"><i class="fa fa-bars"></i></span>
                                     </div>
-                                    <input type="file" class="form-control" name="image">
-                                    <small style="font-size: 9px;">Upload a Photo or video of the Advert you want people to post on their social media accounts</small>
+                                    <input type="text" class="form-control" name="image">
+                                    <small style="font-size: 9px;">Enter Platform Link to engagement. People will click on this link to be able to carry out given task</small>
                                 </div>
                             </div>
                         </div>

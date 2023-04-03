@@ -39,7 +39,7 @@ Dashboard || Miscochat Concept
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
                                             <h5 class="text-fade">Total Balance</h5>
-                                            <h2 class="font-weight-500 mb-0">₦{{ $walletbalance }}</h2>
+                                            <h2 class="font-weight-500 mb-0">₦{{ $totalbalance }}</h2>
                                         </div>
                                         <div class="text-info" style="padding: 35px;">
                                             <h1><span class="ti ti-wallet"></span></h1>

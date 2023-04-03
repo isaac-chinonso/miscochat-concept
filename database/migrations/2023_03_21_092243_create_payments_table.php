@@ -18,7 +18,7 @@ class CreatePaymentsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->string('reference')->nullable();
             $table->string('customer_email')->nullable();
-            $table->double('amount')->nullable();
+            $table->unsignedFloat('amount')->default(0);
             $table->string('channel')->nullable();
             $table->string('gateway_response')->nullable();
             $table->string('ip_address')->nullable();

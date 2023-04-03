@@ -17,6 +17,7 @@ use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class UserPageController extends Controller
@@ -30,12 +31,12 @@ class UserPageController extends Controller
     {
         $user = Auth::user();
         $walletBalance = Wallet::where('user_id', $user->id)->sum('balance');
-        $referralearn = Referral::where('referred_by_user', $user->username)->sum('earnings');
+        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->sum('referrals.earnings');
         $data['walletbalance'] = $walletBalance + $referralearn;
         $data['taskearning'] = Transaction::where('user_id', $user->id)->where('type', '=', 'Task Earning')->sum('amount');
         $data['totalspent'] = Transaction::where('user_id', $user->id)->where('type', '=', 'topup')->sum('amount');
-        $data['referralearning'] = Referral::where('referred_by_user', $user->username)->sum('earnings');
-        $data['referrals'] = Referral::where('referred_by_user', $user->username)->count();
+        $data['referralearning'] = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $data['referrals'] = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->count();
         $data['product'] = Product::where('status', 1)->get();
         $data['tasks'] = Task::where('user_id', $user->id)->get();
         return view('user.dashboard', $data);
@@ -44,7 +45,9 @@ class UserPageController extends Controller
     public function earn()
     {
         $user = Auth::user();
-        $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
+        $walletBalance = Wallet::where('user_id', $user->id)->sum('balance');
+        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $data['walletbalance'] = $walletBalance + $referralearn;
         $data['tasks'] = Task::where('user_id', $user->id)->get();
         return view('user.earn', $data);
     }
@@ -52,7 +55,9 @@ class UserPageController extends Controller
     public function orderfee()
     {
         $user = Auth::user();
-        $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
+        $walletBalance = Wallet::where('user_id', $user->id)->sum('balance');
+        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $data['walletbalance'] = $walletBalance + $referralearn;
         $data['payment'] = Transaction::where('user_id', $user->id)->where('status', 0)->get();
         return view('user.orderfee', $data);
     }
@@ -60,14 +65,18 @@ class UserPageController extends Controller
     public function activateaccount()
     {
         $user = Auth::user();
-        $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
+        $walletBalance = Wallet::where('user_id', $user->id)->sum('balance');
+        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $data['walletbalance'] = $walletBalance + $referralearn;
         return view('user.activate', $data);
     }
 
     public function fundwallet()
     {
         $user = Auth::user();
-        $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
+        $walletBalance = Wallet::where('user_id', $user->id)->sum('balance');
+        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $data['walletbalance'] = $walletBalance + $referralearn;
         $data['transaction'] = Transaction::where('user_id', $user->id)->where('type', '=', 'deposit')->get();
         return view('user.fundwallet', $data);
     }
@@ -75,7 +84,9 @@ class UserPageController extends Controller
     public function placewithdrawal()
     {
         $user = Auth::user();
-        $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
+        $walletBalance = Wallet::where('user_id', $user->id)->sum('balance');
+        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $data['walletbalance'] = $walletBalance + $referralearn;
         $data['transaction'] = Transaction::where('user_id', $user->id)->where('type', '=', 'withdrawal')->get();
         return view('user.withdrawal', $data);
     }
@@ -83,7 +94,9 @@ class UserPageController extends Controller
     public function topuprequest()
     {
         $user = Auth::user();
-        $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
+        $walletBalance = Wallet::where('user_id', $user->id)->sum('balance');
+        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $data['walletbalance'] = $walletBalance + $referralearn;
         $data['topup'] = Topup::where('user_id', $user->id)->get();
         $data['topupplan'] = Topup_Plan::where('status', 1)->get();
         return view('user.topup', $data);
@@ -92,7 +105,9 @@ class UserPageController extends Controller
     public function transaction()
     {
         $user = Auth::user();
-        $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
+        $walletBalance = Wallet::where('user_id', $user->id)->sum('balance');
+        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $data['walletbalance'] = $walletBalance + $referralearn;
         $data['transaction'] = Transaction::where('user_id', $user->id)->get();
         return view('user.transaction', $data);
     }
@@ -107,7 +122,9 @@ class UserPageController extends Controller
     {
         $user = Auth::user();
         $data['users'] = User::where('id', $user->id)->first();
-        $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
+        $walletBalance = Wallet::where('user_id', $user->id)->sum('balance');
+        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $data['walletbalance'] = $walletBalance + $referralearn;
         return view('user.profile', $data);
     }
 
@@ -115,21 +132,27 @@ class UserPageController extends Controller
     {
         $user = Auth::user();
         $data['bankdetails'] = Bank::where('user_id', $user->id)->first();
-        $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
+        $walletBalance = Wallet::where('user_id', $user->id)->sum('balance');
+        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $data['walletbalance'] = $walletBalance + $referralearn;
         return view('user.bankdetails', $data);
     }
 
     public function advertise()
     {
         $user = Auth::user();
-        $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
+        $walletBalance = Wallet::where('user_id', $user->id)->sum('balance');
+        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $data['walletbalance'] = $walletBalance + $referralearn;
         return view('user.advertise', $data);
     }
 
     public function sell()
     {
         $user = Auth::user();
-        $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
+        $walletBalance = Wallet::where('user_id', $user->id)->sum('balance');
+        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $data['walletbalance'] = $walletBalance + $referralearn;
         $data['subscription'] = Subscription::where('user_id', $user->id)->first();
         return view('user.sell', $data);
     }
@@ -137,7 +160,9 @@ class UserPageController extends Controller
     public function postsell()
     {
         $user = Auth::user();
-        $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
+        $walletBalance = Wallet::where('user_id', $user->id)->sum('balance');
+        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $data['walletbalance'] = $walletBalance + $referralearn;
         $data['categories'] = Category::where('status', 1)->get();
         return view('user.postsell', $data);
     }
@@ -145,7 +170,9 @@ class UserPageController extends Controller
     public function productlist()
     {
         $user = Auth::user();
-        $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
+        $walletBalance = Wallet::where('user_id', $user->id)->sum('balance');
+        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $data['walletbalance'] = $walletBalance + $referralearn;
         $data['product'] = Product::where('user_id', $user->id)->get();
         return view('user.productlist', $data);
     }
@@ -153,7 +180,9 @@ class UserPageController extends Controller
     public function productdetails($slug)
     {
         $user = Auth::user();
-        $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
+        $walletBalance = Wallet::where('user_id', $user->id)->sum('balance');
+        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $data['walletbalance'] = $walletBalance + $referralearn;
         $data['productdetails'] = Product::where('slug', '=', $slug)->first();
         return view('user.productdetails', $data);
     }
@@ -161,14 +190,27 @@ class UserPageController extends Controller
     public function socialbuy()
     {
         $user = Auth::user();
-        $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
+        $walletBalance = Wallet::where('user_id', $user->id)->sum('balance');
+        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $data['walletbalance'] = $walletBalance + $referralearn;
         return view('user.advert_task', $data);
+    }
+
+    public function socialengage()
+    {
+        $user = Auth::user();
+        $walletBalance = Wallet::where('user_id', $user->id)->sum('balance');
+        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $data['walletbalance'] = $walletBalance + $referralearn;
+        return view('user.advert_engagement', $data);
     }
 
     public function orderlist()
     {
         $user = Auth::user();
-        $data['walletbalance'] = Wallet::where('user_id', $user->id)->sum('balance');
+        $walletBalance = Wallet::where('user_id', $user->id)->sum('balance');
+        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('referrals.referred_by_user', $user->username)->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $data['walletbalance'] = $walletBalance + $referralearn;
         $data['order'] = Order::where('user_id', $user->id)->get();
         return view('user.orderlist', $data);
     }

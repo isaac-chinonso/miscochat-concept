@@ -36,7 +36,7 @@ class UserTransactionController extends Controller
         $transaction->user_id = $user->id;
         $transaction->amount = $amount;
         $transaction->type = 'deposit';
-        $transaction->status = 1;
+        $transaction->status = 0;
         $transaction->save();
 
         return Paystack::getAuthorizationUrl($data)->redirectNow();

@@ -156,7 +156,7 @@ Advertise || Miscochat Concept
                                         <div align="center">
                                             <img src="../assetsuser/images/people.png" width="100px" height="100px"><br><br>
 
-                                            <a href="#" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
+                                            <a href="{{ url('/user/social-engage') }}" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-sm-9">
@@ -173,7 +173,7 @@ Advertise || Miscochat Concept
                                         <div align="center">
                                             <img src="../assetsuser/images/post.png" width="100px" height="100px"><br><br>
 
-                                            <a href="#" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
+                                            <a href="{{ url('/user/social-engage') }}" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
                                         </div>
                                     </div>
                                     <div class="col-md-9">
@@ -190,7 +190,7 @@ Advertise || Miscochat Concept
                                         <div align="center">
                                             <img src="../assetsuser/images/facebook.png" width="100px" height="100px"><br><br>
 
-                                            <a href="#" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
+                                            <a href="{{ url('/user/social-engage') }}" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
                                         </div>
                                     </div>
                                     <div class="col-md-9">
@@ -207,7 +207,7 @@ Advertise || Miscochat Concept
                                         <div align="center">
                                             <img src="../assetsuser/images/audiomack.png" width="100px" height="100px"><br><br>
 
-                                            <a href="#" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
+                                            <a href="{{ url('/user/social-engage') }}" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
                                         </div>
                                     </div>
                                     <div class="col-md-9">
@@ -224,7 +224,7 @@ Advertise || Miscochat Concept
                                         <div align="center">
                                             <img src="../assetsuser/images/comment.png" width="100px" height="100px"><br><br>
 
-                                            <a href="#" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
+                                            <a href="{{ url('/user/social-engage') }}" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
                                         </div>
                                     </div>
                                     <div class="col-md-9">
@@ -241,7 +241,7 @@ Advertise || Miscochat Concept
                                         <div align="center">
                                             <img src="../assetsuser/images/youtube.png" width="100px" height="100px"><br><br>
 
-                                            <a href="#" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
+                                            <a href="{{ url('/user/social-engage') }}" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
                                         </div>
                                     </div>
                                     <div class="col-md-9">
@@ -258,7 +258,7 @@ Advertise || Miscochat Concept
                                         <div align="center">
                                             <img src="../assetsuser/images/youtube.png" width="100px" height="100px"><br><br>
 
-                                            <a href="#" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
+                                            <a href="{{ url('/user/social-engage') }}" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
                                         </div>
                                     </div>
                                     <div class="col-md-9">
@@ -275,7 +275,7 @@ Advertise || Miscochat Concept
                                         <div align="center">
                                             <img src="../assetsuser/images/playstore.png" width="100px" height="100px"><br><br>
 
-                                            <a href="#" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
+                                            <a href="{{ url('/user/social-engage') }}" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
                                         </div>
                                     </div>
                                     <div class="col-md-9">
@@ -292,7 +292,7 @@ Advertise || Miscochat Concept
                                         <div align="center">
                                             <img src="../assetsuser/images/share.png" width="100px" height="100px"><br><br>
 
-                                            <a href="#" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
+                                            <a href="{{ url('/user/social-engage') }}" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
                                         </div>
                                     </div>
                                     <div class="col-md-9">
@@ -309,7 +309,7 @@ Advertise || Miscochat Concept
                                         <div align="center">
                                             <img src="../assetsuser/images/retweet.png" width="100px" height="100px"><br><br>
 
-                                            <a href="#" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
+                                            <a href="{{ url('/user/social-engage') }}" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
                                         </div>
                                     </div>
                                     <div class="col-md-9">
@@ -326,7 +326,7 @@ Advertise || Miscochat Concept
                                         <div align="center">
                                             <img src="../assetsuser/images/whatsapp.png" width="100px" height="100px"><br><br>
 
-                                            <a href="#" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
+                                            <a href="{{ url('/user/social-engage') }}" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
                                         </div>
                                     </div>
                                     <div class="col-md-9">
@@ -343,7 +343,7 @@ Advertise || Miscochat Concept
                                         <div align="center">
                                             <img src="../assetsuser/images/telegram.png" width="100px" height="100px"><br><br>
 
-                                            <a href="#" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
+                                            <a href="{{ url('/user/social-engage') }}" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
                                         </div>
                                     </div>
                                     <div class="col-md-9">
@@ -360,7 +360,7 @@ Advertise || Miscochat Concept
                                         <div align="center">
                                             <img src="../assetsuser/images/apple-store.png" width="100px" height="100px"><br><br>
 
-                                            <a href="#" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
+                                            <a href="{{ url('/user/social-engage') }}" class="btn btn-outlin" style="padding: 5px 35px 5px 35px;">Select</a><br class="mobileshow"><br class="mobileshow">
                                         </div>
                                     </div>
                                     <div class="col-md-9">

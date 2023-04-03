@@ -21,8 +21,7 @@ Miscochat Concept
                                 <a class="tp-btn" href="{{ url('login') }}">GET STARTED</a>
                             </div>
                             <div class="tp-hero__play-button">
-                                <a class="popup-video img-thumbnail" href="assets/img/dashboard.jpg"><i class="fas fa-play"></i></a>
-                                <span>See Dashboard</span>
+                                <img src="assets/img/googleplay.png">
                             </div>
                         </div>
                     </div>
@@ -64,7 +63,7 @@ Miscochat Concept
                             <img src="assets/img/about/about-circle-shape.png" alt="">
                         </div>
                         <div class="">
-                            <img src="assets/img/about/about11.jpg"alt="">
+                            <img src="assets/img/about/about11.jpg" alt="">
                         </div>
                     </div>
                 </div>
@@ -187,7 +186,7 @@ Miscochat Concept
                         <h1 class="text-center">Top Referrals</h1>
                         <div class="table-responsive">
                             <table class="table table-striped">
-                            <?php $number = 1; ?>
+                                <?php $number = 1; ?>
                                 @foreach($highest as $referral)
                                 <tr>
                                     <td>{{ $number }}</td>
@@ -238,8 +237,8 @@ Miscochat Concept
                                             <img src="assets/img/testimonial/1.png" alt="">
                                         </div>
                                         <div class="tp-testimonial-item__info-text">
-                                            <h4 class="client-name">Wade Micheal</h4>
-                                            <span>Mediahub</span>
+                                            <h4 class="client-name">Adesanya Seun</h4>
+                                            <span>Mediasub</span>
                                         </div>
                                     </div>
                                     <div class="tp-testimonial-item__ratting d-none d-md-block">
@@ -266,7 +265,7 @@ Miscochat Concept
                                             <img src="assets/img/testimonial/1.png" alt="">
                                         </div>
                                         <div class="tp-testimonial-item__info-text">
-                                            <h4 class="client-name">Joy Ibeh</h4>
+                                            <h4 class="client-name">Titilope Nurat</h4>
                                             <span>Nora Scent</span>
                                         </div>
                                     </div>
@@ -318,6 +317,11 @@ Miscochat Concept
     <!-- tp-social-area-start -->
     <div class="tp-social-area social-space-bottom fix">
         <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-md-12" align="center">
+                    <img src="assets/img/googleplay.png">
+                </div>
+            </div>
             <div class="row g-0">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <a href="https://facebook.com/groups/2796370700613614/" target="_blank">
