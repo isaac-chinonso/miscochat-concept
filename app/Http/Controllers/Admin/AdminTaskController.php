@@ -28,7 +28,7 @@ class AdminTaskController extends Controller
 
         if ($tasksToAssign > 0) {
             $userstask = User::where('activated', 1)->where('role_id', 2)->inRandomOrder()->take($tasksToAssign)->get();
-           
+
             foreach ($userstask as $user) {
                 $task = new Task();
                 $task->order_id = $request->input('order_id');
@@ -44,6 +44,16 @@ class AdminTaskController extends Controller
             ->update(array('status' => 1));
 
         \Session::flash('Success_message', '✔ Task allocated to Users Succeffully');
+
+        return back();
+    }
+
+
+    public function approveorder($id)
+    {
+        Order::where(['id' => $id])
+            ->update(array('status' => 1));
+        \Session::flash('Success_message', '✔ Order Approved Succeffully');
 
         return back();
     }

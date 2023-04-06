@@ -42,6 +42,7 @@ Allocated Users || Miscochat Concept
                                             <th>#ID</th>
                                             <th>Username</th>
                                             <th>Task</th>
+                                            <th>Earned</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
@@ -52,11 +53,14 @@ Allocated Users || Miscochat Concept
                                             <td>{{ $number }}</td>
                                             <td>{{ $cop->user->username }}</td>
                                             <td>{{ $cop->order->platform }} {{ $cop->order->package }} ( {{ $cop->order->quantity }} ) </td>
+                                            <td>₦{{ $cop->order->userearn }} </td>
                                             <td>
-                                                @if($cop->status == 1)
-                                                <span class="badge bg-success">Active</span>
-                                                @elseif($cop->status == 0)
-                                                <span class="badge bg-warning">Used</span>
+                                                @if($cop->accept_status == 1)
+                                                <span class="badge bg-primary">Submitted</span>
+                                                @elseif($cop->accept_status == 0)
+                                                <span class="badge bg-warning">Accepted</span>
+                                                @elseif($cop->accept_status == 2)
+                                                <span class="badge bg-success">Completed</span>
                                                 @endif
                                             </td>
                                         </tr>

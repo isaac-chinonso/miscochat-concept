@@ -122,43 +122,49 @@ Dashboard || Miscochat Concept
                                         <th class="text-white">Amount to Earn</th>
                                         <th class="text-white">Description</th>
                                         <th class="text-white">Date</th>
-                                        <th class="text-white">Status</th>
+                                        <th class="text-white">Accepted Users</th>
                                         <th class="text-white">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $number = 1; ?>
                                     @foreach($tasks as $task)
+                                    <?php $count = 0; ?>
+                                    @foreach($adverttaskscount as $adverttask)
+                                    @if($adverttask->order_id == $task->id)
+                                    <?php $count++; ?>
+                                    @endif
+                                    @endforeach
+                                    @if ($count >= $task->quantity)
+                                    @else
                                     <tr>
                                         <td>
                                             <h6>{{ $number }}</h6>
                                         </td>
                                         <td>
-                                            <h6>{{ $task->order->platform }}</h6>
+                                            <h6>{{ $task->platform }}</h6>
                                         </td>
-                                        <th>{{ $task->order->package - 50 }}</th>
-                                        <td>{{ $task->order->caption }}</td>
+                                        <th>{{ $task->userearn }}</th>
+                                        <td>{{ $task->caption }}</td>
                                         <td>
                                             <h6>{{ $task->created_at->format('d M Y ') }}</h6>
                                         </td>
-
                                         <td>
-                                            @if($task->accept_status == 0)
-                                            <span class="badge bg-danger">Pending</span>
-                                            @elseif($task->accept_status == 1)
-                                            <span class="badge bg-success">Allocated</span>
-                                            @elseif($task->accept_status == 2)
-                                            <span class="badge bg-primary">Allocated</span>
+                                            <?php $count = 0; ?>
+                                            @foreach($adverttaskscount as $adverttask)
+                                            @if($adverttask->order_id == $task->id)
+                                            <?php $count++; ?>
                                             @endif
+                                            @endforeach
+                                            {{ $count }} / {{ $task->quantity }}
                                         </td>
                                         <td>
-                                            @if($task->accept_status == 1)
-                                            <button class="btn btn-primary" style="padding: 3px 6px 3px 6px;text-transform:capitalize;font-size:12px;"><a href="{{ route('usertask',$task->id) }}" class="text-white">Perform Task</a></button>
-                                            @elseif($task->accept_status == 0)
+                                            @if($task->user_id == Auth::user()->id)
+
+                                            @else
                                             <button class="btn btn-success" data-toggle="modal" data-target="#responsive-modal2{{ $task->id }}" style="padding: 3px 6px 3px 6px;text-transform:capitalize;font-size:12px;">Accept</button>
-                                            <button class="btn btn-danger" style="padding: 3px 6px 3px 6px;text-transform:capitalize;font-size:12px;">Reject</button>
                                             @endif
-                                            <!-- modal content -->
+                                            <!-- Accept Task modal content -->
                                             <div id="responsive-modal2{{ $task->id }}" class="modal">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
@@ -168,10 +174,12 @@ Dashboard || Miscochat Concept
                                                         </div>
                                                         <div class="modal-body">
                                                             <h4><strong>Confirm </strong></h4>
-                                                            <p>Are you sure you want to Accept {{ $task->order->platform }} {{ $task->order->package }} ( {{ $task->order->quantity }} ) Task</p>
+                                                            <p>Are you sure you want to Accept {{ $task->platform }} Task</p>
                                                         </div>
                                                         <form method="post" action="{{ route('accepttask',$task->id) }}">
                                                             @csrf
+                                                            <input type="hidden" name="order_id" value="{{ $task->id }}">
+                                                            <input type="hidden" name="buyer_id" value="{{ $task->user_id }}">
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default" style="padding: 7px 8px 7px 8px;font-size:12px;" data-dismiss="modal">Close</button>
                                                                 <button type="submit" class="btn btn-success" style="padding: 7px 8px 7px 8px;font-size:12px;">Accept Task</a>
@@ -184,6 +192,7 @@ Dashboard || Miscochat Concept
                                         </td>
                                     </tr>
                                     <?php $number++; ?>
+                                    @endif
                                     @endforeach
                                 </tbody>
                             </table>
@@ -195,7 +204,7 @@ Dashboard || Miscochat Concept
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <div class="section-btn-25"><a href="#" class="btn btn-outline"><i class="fas fa-eye"></i><span>See all Task</span></a></div>
+                <div class="section-btn-25"><a href="{{ route('userearn') }}" class="btn btn-outline"><i class="fas fa-eye"></i><span>See all Task</span></a></div>
             </div>
         </div>
     </div>

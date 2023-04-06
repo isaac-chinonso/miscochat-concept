@@ -25,8 +25,8 @@ Dashboard || Miscochat Concept
                         </nav>
                     </div>
                 </div>
-
             </div>
+            <h4 align="right">Total Balance: ₦{{ $totalbalance }}</h4>
         </div>
         <!-- Main content -->
         <section class="content">
@@ -38,10 +38,70 @@ Dashboard || Miscochat Concept
                                 <div class="box-body py-0">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
-                                            <h5 class="text-fade">Total Balance</h5>
-                                            <h2 class="font-weight-500 mb-0">₦{{ $totalbalance }}</h2>
+                                            <h5 class="text-fade">Total Deposit</h5>
+                                            <h2 class="font-weight-500 mb-0">₦{{ $totaldeposit }}</h2>
+                                        </div>
+                                        <div class="text-primary" style="padding: 35px;">
+                                            <h1><span class="ti ti-import"></span></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <div class="box">
+                                <div class="box-body py-0">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="text-fade">Task Earnings</h5>
+                                            <h2 class="font-weight-500 mb-0">₦{{ $taskearning }}</h2>
                                         </div>
                                         <div class="text-info" style="padding: 35px;">
+                                            <h1><span class="ti ti-wallet"></span></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <div class="box">
+                                <div class="box-body py-0">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="text-fade">Total withdrawal</h5>
+                                            <h2 class="font-weight-500 mb-0">₦{{ $totalwithdrawal }}</h2>
+                                        </div>
+                                        <div class="text-danger" style="padding: 35px;">
+                                            <h1><span class="ti ti-export"></span></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <div class="box">
+                                <div class="box-body py-0">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="text-fade">Total Spents</h5>
+                                            <h2 class="font-weight-500 mb-0">₦{{ $totalspent }}</h2>
+                                        </div>
+                                        <div class="text-warning" style="padding: 35px;">
+                                            <h1><span class="ti ti-new-window"></span></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <div class="box">
+                                <div class="box-body py-0">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="text-fade">Referral Earnings</h5>
+                                            <h2 class="font-weight-500 mb-0">{{ $referralearnings }}</h2>
+                                        </div>
+                                        <div class="text-secondary" style="padding: 35px;">
                                             <h1><span class="ti ti-wallet"></span></h1>
                                         </div>
                                     </div>
@@ -103,21 +163,6 @@ Dashboard || Miscochat Concept
                                         </div>
                                         <div class="text-secondary" style="padding: 35px;">
                                             <h1><span class="fa fa-shopping-basket"></span></h1>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-12">
-                            <div class="box">
-                                <div class="box-body py-0">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <h5 class="text-fade">Pending Transaction</h5>
-                                            <h2 class="font-weight-500 mb-0">{{ $pendingtransactions }}</h2>
-                                        </div>
-                                        <div class="text-secondary" style="padding: 35px;">
-                                            <h1><span class="fa fa-credit-card"></span></h1>
                                         </div>
                                     </div>
                                 </div>

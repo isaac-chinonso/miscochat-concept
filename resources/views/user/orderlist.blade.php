@@ -1,6 +1,6 @@
 @extends('layout.userapp')
 @section('title')
-My Orders || Miscochat Concept
+Advert Task Orders || Miscochat Concept
 @endsection
 @section('content')
 
@@ -29,8 +29,8 @@ My Orders || Miscochat Concept
     <div class="row">
         <div class="col-md-12">
             <div class="banner-btn" align="center">
-                <a class="btn btn-inline" href="{{ url('/user/post-product') }}" style="padding: 7px 8px 7px 8px;font-size:12px;"><i class="fas fa-shopping-basket"></i><span>Post New Advert</span></a><br>
-                <p>Get people to repost your adverts and perform social tasks for you on their social media pages</p>
+                <a class="btn btn-inline" href="{{ url('/user/advertise') }}" style="padding: 7px 8px 7px 8px;font-size:12px;"><i class="fas fa-shopping-basket"></i><span>Post New Advert</span></a><br><br>
+                <p>Adverts tasks are created to get people to post your adverts on various social media platforms</p>
             </div><br>
         </div>
     </div>
@@ -44,7 +44,7 @@ My Orders || Miscochat Concept
                 @include('include.warning')
                 @include('include.error')
                 <div class="account-card">
-                    <h3 class="account-title">My Orders </h3>
+                    <h3 class="account-title">Advert Task Orders </h3>
                     <div class="orderlist">
                         <div class="table-scroll table-responsive">
                             <table class="table table-stripped table-list">
@@ -70,45 +70,48 @@ My Orders || Miscochat Concept
                                     @foreach($order as $ord)
                                     <tr>
                                         <td>
-                                            <h6>{{ $number }}</h6>
+                                            {{ $number }}
                                         </td>
                                         <td class="table-image"><img src="../advert/{{ $ord->image }}" alt="product"></td>
                                         <td>
-                                            <h6>{{ $ord->created_at->format('d M Y ') }}</h6>
+                                            {{ $ord->created_at->format('d M Y ') }}
                                         </td>
                                         <td>
-                                            <h6>{{ $ord->platform }}</h6>
+                                            {{ $ord->platform }}
                                         </td>
                                         <td>
-                                            <h6>{{ $ord->package }}</h6>
+                                            {{ $ord->package }}
                                         </td>
                                         <td>
-                                            <h6>{{ $ord->quantity }}</h6>
+                                            {{ $ord->quantity }}
                                         </td>
                                         <td>
-                                            <h6>₦{{ number_format($ord->amount, 0, '.', ', ') }}</h6>
+                                            ₦{{ number_format($ord->amount, 0, '.', ', ') }}
                                         </td>
                                         <td>
-                                            <h6>{{ $ord->religion }}</h6>
+                                            {{ $ord->religion }}
                                         </td>
                                         <td>
-                                            <h6>{{ $ord->gender }}</h6>
+                                            {{ $ord->gender }}
                                         </td>
                                         <td>
-                                            <h6>{{ $ord->location }}</h6>
+                                            {{ $ord->location }}
                                         </td>
                                         <td>
-                                            <h6>{{ $ord->caption }}</h6>
+                                            {{ $ord->caption }}
                                         </td>
                                         <td>
                                             @if($ord->status == 1)
-                                            <span class="badge bg-success">Allocated</span>
+                                            <span class="badge bg-success">Approved</span>
                                             @elseif($ord->status == 0)
                                             <span class="badge bg-danger">Pending</span>
                                             @endif
                                         </td>
                                         <td>
                                             <a href="#" data-toggle="modal" data-target="#responsive-modal2{{ $ord->id }}"><i class="fa fa-trash text-danger"></i></a>
+                                            @if($ord->status == 1)
+                                            <button class="btn btn-outline" style="padding: 5px;"><a href="{{ route('useradverttaskprogress', $ord->id) }}" style="font-size:10px;">See Progress</a></button>
+                                            @endif
                                             <!-- modal content -->
                                             <div id="responsive-modal2{{ $ord->id }}" class="modal">
                                                 <div class="modal-dialog modal-dialog-centered">
@@ -124,7 +127,7 @@ My Orders || Miscochat Concept
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default" style="padding: 7px 8px 7px 8px;font-size:12px;" data-dismiss="modal">Close</button>
-                                                            <a href="{{ route('deleteuserorder',$ord->id) }}" class="btn btn-danger" style="padding: 7px 8px 7px 8px;font-size:12px;">Delete Product</a>
+                                                            <a href="{{ route('deleteuseradvertorder',$ord->id) }}" class="btn btn-danger" style="padding: 7px 8px 7px 8px;font-size:12px;">Delete Product</a>
                                                         </div>
                                                     </div>
                                                 </div>

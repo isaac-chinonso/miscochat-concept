@@ -25,7 +25,10 @@ class CreateOrdersTable extends Migration
             $table->string('caption');
             $table->string('image');
             $table->string('amount');
+            $table->string('userearn');
+            $table->string('type');
             $table->boolean('status');
+            $table->boolean('user_accept');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');

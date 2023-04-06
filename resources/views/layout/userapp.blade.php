@@ -115,11 +115,21 @@
                     <div class="navbar-content">
                         <ul class="navbar-list">
                             <li class="navbar-item dropdown">
-                                <a href="{{ url('/user/dashboard') }}"><i class="fa fa-home"></i> Dashboard</a>
+                                <a href="{{ url('/user/dashboard') }}"><i class="fa fa-home"></i></a>
                             </li>
+
                             <li class="navbar-item dropdown">
-                                <a href="{{ url('/user/orders') }}"><i class="fa fa-list"></i> My orders</a>
+                                <a class="navbar-link dropdown-arrow" href="#"><i class="fa fa-list"></i> Orders</a>
+                                <ul class="dropdown-position-list">
+                                    <li><a href="{{ url('/user/advert-task-orders') }}">Advert Task Order</a></li>
+                                    <li><a href="{{ url('/user/engagement-task-orders') }}">Engagement Task Order</a></li>
+                                </ul>
                             </li>
+
+                            <li class="navbar-item dropdown-megamenu ">
+                                <a href="{{ url('/user/accepted-task') }}"><i class="fa fa-list"></i> Accepted Task</a>
+                            </li>
+
                             <li class="navbar-item dropdown-megamenu ">
                                 <a href="{{ url('/user/fund-wallet') }}"><i class="fa fa-credit-card"></i> Fund wallet</a>
                             </li>
@@ -129,13 +139,13 @@
 
                             </li>
                             <li class="navbar-item dropdown-megamenu ">
-                                <a href="{{ url('/user/marketplace') }}"><i class="fa fa-shopping-basket"></i> Market</a>
+                                <a href="{{ url('/user/marketplace') }}"><i class="fa fa-shopping-basket"></i> Marketplace</a>
                             </li>
                             <li class="navbar-item dropdown-megamenu ">
                                 <a href="{{ url('/user/earn') }}"><i class="fa fa-wallet"></i> Earn</a>
                             </li>
                             <li class="navbar-item dropdown-megamenu ">
-                                <a href="{{ url('/user/product-list') }}"><i class="fa fa-shopping-basket"></i> Product List</a>
+                                <a href="{{ url('/user/product-list') }}"><i class="fa fa-shopping-basket"></i> Product</a>
                             </li>
                         </ul>
                         <div class="navbar-info-group">
@@ -189,17 +199,23 @@
             <a href="# "><img src="../assetsuser/images/attachment_86448295.gif " alt="logo "></a><button class="nav-close "><i class="icofont-close "></i></button>
         </div>
         <ul class="nav-list ">
-            <li><a class="nav-link dropdown-link " href="{{ url('/user/orders') }}"><i class="icofont-listine-dots "></i>My Orders</a></li>
+            <li><a class="nav-link dropdown-link" href="#"><i class="icofont-listine-dots "></i>My Orders</a>
+                <ul class="dropdown-list">
+                    <li><a href="{{ url('/user/advert-task-orders') }}">Advert Task Order</a></li>
+                    <li><a href="{{ url('/user/engagement-task-orders') }}">Engagement Task Order</a></li>
+                </ul>
+            </li>
+            <li><a class="nav-link" href="{{ url('/user/accepted-task') }}"><i class="fa fa-list"></i>Accepted Task</a> </li>
 
-            <li><a class="nav-link dropdown-link " href="{{ url('/user/fund-wallet') }}"><i class="icofont-bag-alt "></i>Fund Wallet</a> </li>
+            <li><a class="nav-link" href="{{ url('/user/fund-wallet') }}"><i class="icofont-bag-alt"></i>Fund Wallet</a> </li>
 
-            <li><a class="nav-link dropdown-link " href="{{ url('/user/place-withdrawal') }}"><i class="icofont-money "></i>Place withdrawal</a></li>
+            <li><a class="nav-link" href="{{ url('/user/place-withdrawal') }}"><i class="icofont-money "></i>Place withdrawal</a></li>
 
-            <li><a class="nav-link dropdown-link " href="{{ url('/user/transaction-history') }}"><i class="icofont-listing-box "></i> Transaction History</a></li>
+            <li><a class="nav-link" href="{{ url('/user/transaction-history') }}"><i class="icofont-listing-box "></i> Transaction History</a></li>
 
-            <li><a class="nav-link dropdown-link " href="{{ url('/user/bank') }}"><i class="icofont-bag-alt"></i>Update Bank Details</a></li>
+            <li><a class="nav-link" href="{{ url('/user/bank') }}"><i class="icofont-bag-alt"></i>Update Bank Details</a></li>
 
-            <li><a class="nav-link dropdown-link " href="{{ url('/user/profile') }}"><i class="icofont-book-alt "></i>Edit Profile</a></li>
+            <li><a class="nav-link" href="{{ url('/user/profile') }}"><i class="icofont-book-alt "></i>Edit Profile</a></li>
 
             <li><a class="nav-link " href="{{ url('logout') }}"><i class="icofont-logout "></i>logout</a></li>
         </ul>

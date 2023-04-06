@@ -18,6 +18,9 @@ class CreateSubmittedTasksTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('order_id');
             $table->string('image');
+            $table->string('image1')->nullable();
+            $table->string('image2')->nullable();
+            $table->string('image3')->nullable();
             $table->boolean('status');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')

@@ -29,10 +29,14 @@ class AdminPageController extends Controller
         $walletBalance = Wallet::sum('balance');
         $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('users.activated', '=', 1)->sum('referrals.earnings');
         $data['totalbalance'] = $walletBalance + $referralearn;
+        $data['taskearning'] = Transaction::where('type', '=', 'task earning')->sum('amount');
+        $data['totaldeposit'] = Transaction::where('type', '=', 'deposit')->sum('amount');
+        $data['totalwithdrawal'] = Transaction::where('type', '=', 'withdrawal')->sum('amount');
+        $data['referralearnings'] = Referral::sum('earnings');
+        $data['totalspent'] = Transaction::where(function ($query) {$query->where('type', '=', 'topup')->orWhere('type', '=', 'advert task')->orWhere('type', '=', 'engagement task')->orWhere('type', '=', 'advert subscription');})->sum('amount');
         $data['products'] = Product::where('status', 1)->count();
         $data['orders'] = Order::count();
         $data['users'] = User::where('role_id', 2)->count();
-        $data['pendingtransactions'] = Transaction::where('status', 0)->count();
         $data['referrals'] = Referral::count();
         return view('admin.dashboard', $data);
     }
@@ -89,6 +93,12 @@ class AdminPageController extends Controller
     {
         $data['coupon'] = Coupon::all();
         return view('admin.coupond_code', $data);
+    }
+
+    public function transactions()
+    {
+        $data['transactionhistory'] = Transaction::all();
+        return view('admin.transaction_history', $data);
     }
 
     public function pendingtopup()

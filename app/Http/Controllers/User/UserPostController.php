@@ -16,6 +16,7 @@ use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class UserPostController extends Controller
 {
@@ -108,8 +109,12 @@ class UserPostController extends Controller
         $walletfund = Wallet::where('user_id', $user->id)->first();
         $amount = $request->input('amount');
         if ($walletfund->balance < $amount) {
-            return redirect()->route('userfundwallet')->with('warning_message', 'Insufficient balance!');
+            return redirect()->route('userfundwallet')->with('warning_message', 'Insufficient balance! kindly Fund Wallet to Continue');
         } else {
+
+            $walletfund->balance -= $amount;
+            $walletfund->save();
+
             // Save Record into Order DB
             $advertorder = new Order();
             $advertorder->user_id = $user->id;
@@ -120,15 +125,24 @@ class UserPostController extends Controller
             $advertorder->religion = $request->input('religion');
             $advertorder->location = $request->input('location');
             $advertorder->amount = $amount;
+            $advertorder->userearn = $advertorder->package / 2;
             $advertorder->caption = $request->input('caption');
             $advertorder->image = $filename;
+            $advertorder->type = 'advert';
             $advertorder->status = 0;
             $advertorder->save();
+
+            $transaction = new Transaction();
+            $transaction->user_id = auth()->id();
+            $transaction->amount = $amount;
+            $transaction->type = 'advert task';
+            $transaction->status = 1;
+            $transaction->save();
         }
 
         \Session::flash('Success_message', 'Advert Task Submitted Successfully');
 
-        return redirect()->route('userorderfee');
+        return redirect()->route('userorderadvert');
     }
 
     // Save Advert Task
@@ -150,8 +164,12 @@ class UserPostController extends Controller
         $walletfund = Wallet::where('user_id', $user->id)->first();
         $amount = $request->input('amount');
         if ($walletfund->balance < $amount) {
-            return redirect()->route('userfundwallet')->with('warning_message', 'Insufficient balance!');
+            return redirect()->route('userfundwallet')->with('warning_message', 'Insufficient balance! kindly Fund Wallet to Continue');
         } else {
+
+            $walletfund->balance -= $amount;
+            $walletfund->save();
+
             // Save Record into Order DB
             $advertorder = new Order();
             $advertorder->user_id = $user->id;
@@ -162,26 +180,46 @@ class UserPostController extends Controller
             $advertorder->religion = $request->input('religion');
             $advertorder->location = $request->input('location');
             $advertorder->amount = $amount;
+            $advertorder->userearn = $advertorder->package / 2;
             $advertorder->caption = $request->input('caption');
             $advertorder->image = $request->input('image');
+            $advertorder->type = 'engagement';
             $advertorder->status = 0;
             $advertorder->save();
+
+            $transaction = new Transaction();
+            $transaction->user_id = auth()->id();
+            $transaction->amount = $amount;
+            $transaction->type = 'engagement task';
+            $transaction->status = 1;
+            $transaction->save();
         }
 
         \Session::flash('Success_message', 'Advert Engagement Submitted Successfully');
 
-        return redirect()->route('userorderfee');
+        return redirect()->route('userorderengagement');
     }
 
-    public function deleteorder($id)
+    public function deleteadvertorder($id)
     {
-        // Delete Order
+        // Delete Advert Order
         $advertorder = Order::where('id', $id)->first();
         $file_path = public_path() . '/advert/' . $advertorder->image;
         unlink($file_path);
         $advertorder->delete();
 
-        \Session::flash('Success_message', 'You Have Successfully Deleted advert');
+        \Session::flash('Success_message', 'Advert Task Deleted Successfully');
+
+        return back();
+    }
+
+    public function deleteengagementorder($id)
+    {
+        // Delete Engagement Order
+        $advertorder = Order::where('id', $id)->first();
+        $advertorder->delete();
+
+        \Session::flash('Success_message', 'Engagement Task Deleted Successfully');
 
         return back();
     }
@@ -231,51 +269,124 @@ class UserPostController extends Controller
         return back();
     }
 
-    public function accepttask(Request $request)
+    public function accepttask(Request $request, $id)
     {
         $user = Auth::user();
-        Task::where(['user_id' => $user->id])->where(['status' => 1])
-            ->update(array('accept_status' => 1));
 
-        \Session::flash('Success_message', 'Task Accepted Successfully');
+        $task = new Task();
+        $task->order_id = $request->input('order_id');
+        $task->buyer_id = $request->input('buyer_id');
+        $task->user_id = $user->id;
+        $task->accept_status = 0;
+        if (Task::where('user_id', '=', $user->id)->where('order_id', '=', $id)->exists()) {
+            return back()->with('warning_message', 'Task Already Accepted, Check Accepted Task Page for details');
+        } else {
+            $task->save();
 
-        return redirect()->route('userdashboard');
+            \Session::flash('Success_message', 'Task Accepted Successfully');
+
+            return redirect()->route('useracceptedtask');
+        }
     }
 
     public function submittask(Request $request, $id)
     {
+        // Validation
+        $validator = Validator::make($request->all(), [
+            'order_id' => 'required',
+            'image' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
         $user = Auth::user();
 
         $task = Task::where('id', $id)->where('user_id', $user->id)->first();
 
-        $taskamount = $task->order->package - (35/100)*$task->order->package;
-
-        $image = $request['image'];
-        $filename = time() . '.' . $image->getClientOriginalExtension();
-        $destination = public_path('proof/');
-        $image->move($destination, $filename);
-
         $submittedtask = new SubmittedTask();
         $submittedtask->user_id = $user->id;
         $submittedtask->order_id = $request->input('order_id');
-        $submittedtask->image = $filename;
+
+        if ($request->hasFile('image')) {
+            $image = $request['image'];
+            $filename = $image->getClientOriginalName();
+            $destination = public_path('proof/');
+            $image->move($destination, $filename);
+            $submittedtask->image = $filename;
+        }
+
+        if ($request->hasFile('image1')) {
+            $image1 = $request['image1'];
+            $filename = $image1->getClientOriginalName();
+            $destination = public_path('proof/');
+            $image1->move($destination, $filename);
+            $submittedtask->image1 = $filename;
+        }
+
+        if ($request->hasFile('image2')) {
+            $image2 = $request['image2'];
+            $filename = $image2->getClientOriginalName();
+            $destination = 'file';
+            $image2->move($destination, $filename);
+            $submittedtask->image2 = $filename;
+        }
+
+        if ($request->hasFile('image3')) {
+            $image3 = $request['image3'];
+            $filename = $image3->getClientOriginalName();
+            $destination = 'file';
+            $image3->move($destination, $filename);
+            $submittedtask->image3 = $filename;
+        }
+
         $submittedtask->status = 0;
         $submittedtask->save();
 
         $transaction = new Transaction();
         $transaction->user_id = auth()->id();
-        $transaction->amount = $taskamount;
+        $transaction->amount = $task->order->userearn;
         $transaction->type = 'Task Earning';
         $transaction->status = 0;
         $transaction->save();
 
         Task::where(['user_id' => $user->id])->where(['id' => $id])
-            ->update(array('accept_status' => 2));
+            ->update(array('accept_status' => 1));
 
         \Session::flash('Success_message', 'Proof Submitted Successfully');
 
-        return redirect()->route('userearn');
+        return redirect()->route('useracceptedtask');
     }
+
+    public function approvetasksubmission($id)
+    {
+
+        $order = Task::where('id', $id)->first();
+
+        Task::where(['id' => $id])
+            ->update(array('accept_status' => 2));
+
+        SubmittedTask::where(['user_id' => $order->user_id])
+            ->where(['order_id' => $order->order_id])
+            ->update(array('status' => 1));
+
+        $transaction = new Transaction();
+        $transaction->user_id = $order->user_id;
+        $transaction->amount = $order->order->userearn;
+        $transaction->type = 'task earning';
+        $transaction->status = 1;
+        $transaction->save();
+
+        $walletfund = Wallet::where('user_id', $order->user_id)->first();
+        $walletfund->balance += $order->order->userearn;
+        $walletfund->save();
+        \Session::flash('Success_message', 'Task Submission Approved Successfully');
+
+        return back();
+    }
+
 
 
     public function submitprofile()
@@ -288,8 +399,7 @@ class UserPostController extends Controller
             $wallet->bank_name = '';
             $wallet->account_num = '';
             $wallet->account_name = '';
-            $wallet->save();    
-
+            $wallet->save();
         }
 
         \Session::flash('Success_message', 'Profile Submitted Successfully');

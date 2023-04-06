@@ -24,6 +24,10 @@ Advertise || Miscochat Concept
                                 @elseif (date("H") >= 15 && date("H") < 24) Good evening, <span class="text-danger"> {{ Auth::user()->username }}</span>
                                     @endif
                     </h3>
+                    <div class="my-wallet">
+                        <p>Total Balance</p>
+                        <h3>₦{{ $walletbalance }}</h3>
+                    </div>
                 </div>
             </div>
         </div>

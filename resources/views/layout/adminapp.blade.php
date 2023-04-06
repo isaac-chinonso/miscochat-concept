@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../assetadmin/assets/img/favicon.png">
+    <link rel="icon" href="../assetsuser/images/favicon.png">
 
     <title>@yield('title')</title>
 
@@ -155,6 +155,12 @@
                         <a href="{{ url('/admin/coupon') }}">
                             <i class="icon-Library"><span class="path1"></span><span class="path2"></span></i>
                             <span>Coupons Code</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/admin/transaction-history') }}">
+                            <i class="ti ti-export"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Transaction History</span>
                         </a>
                     </li>
                     <li class="treeview">

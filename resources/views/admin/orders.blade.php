@@ -78,14 +78,14 @@ Orders || Miscochat Concept
                                             <td>{{ $ord->caption }}</td>
                                             <td>
                                                 @if($ord->status == 1)
-                                                <span class="badge bg-success">Allocated</span>
+                                                <span class="badge bg-success">Approved</span>
                                                 @elseif($ord->status == 0)
                                                 <span class="badge bg-warning">Pending</span>
                                                 @endif
                                             </td>
 
                                             <td>
-                                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#allocate{{ $ord->id }}">Allocate</button><br><br>
+                                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#allocate{{ $ord->id }}">Approve</button><br><br>
                                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default{{ $ord->id }}"> Delete </button>
                                                 <!-- modal Area -->
                                                 <div class="modal fade" id="modal-default{{ $ord->id }}">
@@ -116,21 +116,19 @@ Orders || Miscochat Concept
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h4 class="modal-title">Allocate Task to Users</h4>
+                                                                <h4 class="modal-title">Approve Order</h4>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span></button>
                                                             </div>
                                                             <form method="post" action="{{ route('savetask',$ord->id) }}">
                                                                 @csrf
                                                                 <div class="modal-body">
-                                                                    <h4><strong>Confirm Allocation</strong></h4>
-                                                                    <p>Are you sure you want to Allocate Order to Random Users of {{ $ord->quantity }} ?</p>
-                                                                    <input type="hidden" name="order_id" value="{{ $ord->id }}">
-                                                                    <input type="hidden" name="buyer_id" value="{{ $ord->user_id }}">
+                                                                    <h4><strong>Confirm Approval</strong></h4>
+                                                                    <p>Are you sure you want to approve <strong>{{ $ord->platform }}</strong> Order from <strong>{{ $ord->user->username }}</strong> ?</p>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                                    <button class="btn btn-primary float-right" type="submit">Allocate</button>
+                                                                    <button class="btn btn-primary float-right" type="submit">Approve</button>
                                                                 </div>
                                                             </form>
                                                         </div>

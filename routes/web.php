@@ -64,11 +64,21 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'before' => 'user'], f
 
     Route::post('/submit-profile', [UserPostController::class, 'submitprofile'])->name('submitprofile');
 
-    Route::post('/accept-task', [UserPostController::class, 'accepttask'])->name('accepttask');
+    Route::post('/accept-task/{id}', [UserPostController::class, 'accepttask'])->name('accepttask');
+
+    Route::post('/reject-task/{id}', [UserPostController::class, 'rejecttask'])->name('rejecttask');
 
     Route::get('/task/{id}', [UserPageController::class, 'performtask'])->name('usertask');
 
+    Route::get('/accepted-task', [UserPageController::class, 'generaltask'])->name('useracceptedtask');
+
     Route::post('/submit-task/{id}', [UserPostController::class, 'submittask'])->name('submittask');
+
+    Route::get('/advert-task-progress/{id}', [UserPageController::class, 'adverttaskprogress'])->name('useradverttaskprogress');
+
+    Route::get('/advert-task-proof/{id}', [UserPageController::class, 'adverttaskproof'])->name('useradverttaskproof');
+
+    Route::post('/approve-task-submission/{id}', [UserPostController::class, 'approvetasksubmission'])->name('userapprovetasksubmission');
 
     Route::get('/marketplace', [UserPageController::class, 'market']);
 
@@ -130,9 +140,13 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'before' => 'user'], f
 
     Route::post('/save-advert-engagement', [UserPostController::class, 'saveadvertengagement']);
 
-    Route::get('/orders', [UserPageController::class, 'orderlist'])->name('userorder');
+    Route::get('/advert-task-orders', [UserPageController::class, 'advertorderlist'])->name('userorderadvert');
 
-    Route::get('delete-order/{id}', [UserPostController::class, 'deleteorder'])->name('deleteuserorder');
+    Route::get('/engagement-task-orders', [UserPageController::class, 'engagementorderlist'])->name('userorderengagement');
+
+    Route::get('delete-advert-order/{id}', [UserPostController::class, 'deleteadvertorder'])->name('deleteuseradvertorder');
+
+    Route::get('delete-engagement-order/{id}', [UserPostController::class, 'deleteengagementorder'])->name('deleteuserengagementorder');
 
 });
 
@@ -179,6 +193,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'before' => 'admin'],
     Route::post('/save-coupon', [AdminPostController::class, 'savecode']);
 
     Route::get('delete-coupon/{id}', [AdminPostController::class, 'deletecoupon'])->name('deleteadmincoupon');
+
+    Route::get('/transaction-history', [AdminPageController::class, 'transactions']);
 
     Route::get('/pending-deposit', [AdminPageController::class, 'pendingdeposit']);
 

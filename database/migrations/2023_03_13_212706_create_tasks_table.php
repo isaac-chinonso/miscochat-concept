@@ -18,8 +18,7 @@ class CreateTasksTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('order_id');
             $table->bigInteger('buyer_id');
-            $table->boolean('status');
-            $table->integer('accept_status');
+            $table->boolean('accept_status');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');

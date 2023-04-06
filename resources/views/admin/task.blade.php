@@ -40,14 +40,11 @@ Tasks || Miscochat Concept
                                             <th>#ID</th>
                                             <th>User</th>
                                             <th>Platform</th>
-                                            <th>Quantity</th>
                                             <th>Package</th>
+                                            <th>Quantity</th>
                                             <th>Amount</th>
+                                            <th>User Earns</th>
                                             <th>Gender</th>
-                                            <th>Location</th>
-                                            <th>Religion</th>
-                                            <th>Image</th>
-                                            <th>Caption</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -59,30 +56,19 @@ Tasks || Miscochat Concept
                                             <td>
                                                 <h6>{{ $number }}</h6>
                                             </td>
-
                                             <td>{{ $ord->user->username }}</td>
-                                            <td>{{ $ord->platform }}</td>
-                                            <td>{{ $ord->quantity }}</td>
-                                            <td>{{ $ord->package }}</td>
-                                            <td>₦{{ number_format($ord->amount, 0, '.', ', ') }}</td>
+                                            <td>{{ $ord->platform }} </td>
+                                            <td>{{ $ord->package }} </td>
+                                            <td> {{ $ord->quantity }} </td>
+                                            <td>₦{{ $ord->amount }}</td>
+                                            <td>₦{{ $ord->userearn }}</td>
                                             <td>{{ $ord->gender }}</td>
-                                            <td>{{ $ord->location }} </td>
-                                            <td>{{ $ord->religion }}</td>
                                             <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="mr-25 h-60 w-60 rounded text-center b-1">
-                                                        <img src="../advert/{{ $ord->image }}" class="align-self-center" alt="">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>{{ $ord->caption }}</td>
-                                            <td>
-                                                <span class="badge bg-success">Allocated</span>
+                                                <span class="badge bg-success">Approved</span>
                                             </td>
 
                                             <td>
-                                                <button class="btn btn-info btn-sm"><a href="{{ route('allocatedtask', $ord->id) }}" class="text-white">Allocated </a></button><br><br>
-                                                <button class="btn btn-secondary btn-sm"><a href="{{ route('allocatedtask', $ord->id) }}" class="text-white">Result</a></button><br><br>
+                                                <button class="btn btn-info btn-sm"><a href="{{ route('allocatedtask', $ord->id) }}" class="text-white">Accepted Users </a></button><br><br>
                                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default{{ $ord->id }}"> Delete </button>
                                                 <!-- modal Area -->
                                                 <div class="modal fade" id="modal-default{{ $ord->id }}">
