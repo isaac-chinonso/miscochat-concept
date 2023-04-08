@@ -89,9 +89,7 @@
                             </a>
                             <ul class="dropdown-menu animated flipInX">
                                 <li class="user-body">
-                                    <a class="dropdown-item" href="#"><i class="ti-user text-muted mr-2"></i> Profile</a>
-                                    <a class="dropdown-item" href="#"><i class="ti-wallet text-muted mr-2"></i> My Wallet</a>
-                                    <a class="dropdown-item" href="#"><i class="ti-settings text-muted mr-2"></i> Settings</a>
+                                    <a class="dropdown-item" href="{{ url('/admin/settings') }}"><i class="ti-settings text-muted mr-2"></i> Settings</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ url('logout') }}"><i class="ti-lock text-muted mr-2"></i> Logout</a>
                                 </li>
@@ -114,7 +112,7 @@
                             <a class="dropdown-toggle px-20" data-toggle="dropdown" href="#">{{ Auth::user()->username }}</a>
                             <div class="dropdown-menu">
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a>
+                                <a class="dropdown-item" href="{{ url('/admin/settings') }}"><i class="ti-settings"></i> Settings</a>
                             </div>
                         </div>
                     </div>

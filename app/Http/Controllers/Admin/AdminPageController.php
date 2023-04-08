@@ -47,6 +47,11 @@ class AdminPageController extends Controller
         return view('admin.member', $data);
     }
 
+    public function setting()
+    {
+        return view('admin.setting');
+    }
+
     public function subadmins()
     {
         $data['users'] = User::where('role_id', 3)->get();

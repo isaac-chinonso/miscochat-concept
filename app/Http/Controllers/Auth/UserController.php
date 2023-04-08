@@ -10,6 +10,7 @@ use App\Models\Bank;
 use App\Models\Referral;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -147,6 +148,27 @@ class UserController extends Controller
         \Session::flash('Success_message', '✔ profile Updated Succeffully');
 
         return back();
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = auth()->user();
+
+        $current_password = $user->password;
+        if (Hash::check($request->current_password, $current_password)) {
+            $user->fill([
+                'password' => Hash::make($request->password)
+            ])->save();
+
+            return redirect()->back()->with('Success_message', 'Password Changed Successfully');;
+        } else {
+            return redirect()->back()->withErrors(['current_password' => 'The provided password does not match your current password.']);
+        }
     }
 
     public function disableuser($id)

@@ -154,6 +154,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'before' => 'admin'],
 
     Route::get('/dashboard', [AdminPageController::class, 'dashboard'])->name('admindashboard');
 
+    Route::get('/settings', [AdminPageController::class, 'setting'])->name('adminsetting');
+
+    Route::post('/update-password', [UserController::class, 'updatePassword'])->name('user.update-password');
+
     Route::get('/members', [AdminPageController::class, 'member']);
 
     Route::get('/disable-user/{id}', [UserController::class, 'disableuser'])->name('disableuser');
