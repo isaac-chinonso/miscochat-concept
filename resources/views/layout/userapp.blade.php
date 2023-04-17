@@ -131,7 +131,7 @@
                             </li>
 
                             <li class="navbar-item dropdown-megamenu ">
-                                <a href="{{ url('/user/fund-wallet') }}"><i class="fa fa-credit-card"></i> Fund wallet</a>
+                                <a href="{{ url('/user/deposit-wallet') }}"><i class="fa fa-credit-card"></i> Fund wallet</a>
                             </li>
 
                             <li class="navbar-item dropdown-megamenu ">
@@ -158,7 +158,7 @@
             </div>
         </div>
     </nav>
-    <!-- Modal -->
+    <!-- Advertise Modal -->
     <div class="modal" id="exampleModalCenter">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -191,6 +191,41 @@
             </div>
         </div>
     </div>
+
+    <!-- Withdrawal Modal -->
+    <div class="modal" id="WithdrawalModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="exampleModalLongTitle">Choose your Withdrawal Option:</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row row-cols-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-2">
+                        <div class="col">
+                            <div class="panels" align="center">
+                                <h6 style="color: black;font-size:12px;">Wallet Balance</h6>
+                                <img src="../assetsuser/images/market.png" width="50px" height="50px"><br>
+                                <a href="#" style="font-size: 11px;">Place withdrawal from your task earnings and deposit Wallet balance.</a><br><br>
+                                <a href="{{ url('/user/sell') }}" class="btn btn-outlin" style="padding: 3px 8px 3px 8px;font-size:12px;">Continue</a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="panels" align="center">
+                                <h6 style="color: black;font-size:12px;">Referral Earnings</h6>
+                                <img src="../assetsuser/images/social.jpg" width="50px" height="50px"><br>
+                                <a href="#" style="font-size: 11px;">Place withdrawal from your Referral earnings Wallet balance.</a><br><br>
+                                <a href="{{ url('/user/advertise') }}" class="btn btn-outlin" style="padding: 3px 8px 3px 8px;font-size:12px;">Continue</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <aside class="nav-sidebar ">
         <div class="nav-header ">
             <a href="# "><img src="../assetsuser/images/logo1.png " alt="logo "></a><button class="nav-close "><i class="icofont-close "></i></button>
@@ -207,7 +242,7 @@
             </li>
             <li><a class="nav-link" href="{{ url('/user/accepted-task') }}"><i class="fa fa-list"></i>Accepted Task</a> </li>
 
-            <li><a class="nav-link" href="{{ url('/user/fund-wallet') }}"><i class="icofont-bag-alt"></i>Fund Wallet</a> </li>
+            <li><a class="nav-link" href="{{ url('/user/deposit-wallet') }}"><i class="icofont-bag-alt"></i>Fund Wallet</a> </li>
 
             <li><a class="nav-link" href="{{ url('/user/place-withdrawal') }}"><i class="icofont-money "></i>Place withdrawal</a></li>
 
@@ -246,7 +281,7 @@
                 <div class="col-sm-12 col-xl-12 text-center">
                     <div class="footer-widget ">
                         <a class="footer-logo " href="# "><img src="../assetsuser/images/logo1.png " alt="logo "></a>
-                        <p class="footer-desc ">Miscokit is the best platform best platform best platform best platform ever.</p>
+                        <p class="footer-desc ">Miscochat is the best platform best platform best platform best platform ever.</p>
                         <ul class="footer-social ">
                             <li>
                                 <a class="icofont-facebook " href="#"></a>

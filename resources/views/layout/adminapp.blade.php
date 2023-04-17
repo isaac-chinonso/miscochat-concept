@@ -194,6 +194,7 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
+                            <li><a href="{{ url('/admin/manual-deposit') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Manual Deposit</a></li>
                             <li><a href="{{ url('/admin/pending-deposit') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Pending Deposit</a></li>
                             <li><a href="{{ url('/admin/active-deposit') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Completed Deposit </a></li>
                         </ul>
@@ -206,14 +207,15 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
+                            <li><a href="{{ url('/admin/manual-withdrawal') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Manual Withdrawal</a></li>
                             <li><a href="{{ url('/admin/pending-withdrawal') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Pending Withdrawal</a></li>
                             <li><a href="{{ url('/admin/active-withdrawal') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Paid Withdrawal </a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{ url('/admin/notice-board') }}">
                             <i class="icon-Chat"><span class="path1"></span><span class="path2"></span></i>
-                            <span>Support</span>
+                            <span>Notice Board</span>
                         </a>
                     </li>
                 </ul>

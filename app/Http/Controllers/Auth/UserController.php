@@ -8,6 +8,7 @@ use App\Models\Profile;
 use App\Http\Controllers\Controller;
 use App\Models\Bank;
 use App\Models\Referral;
+use App\Models\ReferralWallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -49,17 +50,25 @@ class UserController extends Controller
     }
 
     //Save Users Function
-    public function savelogin(Request $request)
+    public function postregister(Request $request)
     {
         // Validation
         $this->validate($request, [
             'fname' => 'required',
             'lname' => 'required',
             'username' => 'required',
-            'email' => 'required',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|min:6',
             'confirm_password' => 'required|same:password',
         ]);
+
+        // Check if the username already exist
+        $user = User::where('username', $request->username)->first();
+
+        if ($user) {
+            // Username or email already exist in the database
+            return redirect()->back()->with('warning_message', 'Username has already been taken.');
+        }
 
         // Save Record into user DB
         $user = new User();
@@ -72,11 +81,7 @@ class UserController extends Controller
         $user->refer_by_id = $request->input('referred_by_user');
         $user->activated = 0;
         $user->status = 1;
-        if (User::where('email', '=', $user->email)->exists()) {
-            return redirect()->back()->with('warning_message', 'User Already Exist');
-        } else {
-            $user->save();
-        }
+        $user->save();
 
         // Find the referring user by username
         $referringUser = User::where('username', $request->referred_by_user)->firstOrFail();
@@ -88,6 +93,10 @@ class UserController extends Controller
         $referral->earnings = 2000.00;
         $referral->save();
 
+        $walletfund = ReferralWallet::where('username', $referringUser->username)->first();
+        $walletfund->balance += 2000.00;
+        $walletfund->save();
+
         $bank = new Bank();
         $bank->user_id = $user->id;
         $bank->bank_name = '';
@@ -95,6 +104,12 @@ class UserController extends Controller
         $bank->account_name = '';
         $bank->save();
 
+        //Save Record into Wallet DB
+        $referralwallet = new ReferralWallet();
+        $referralwallet->user_id = $user->id;
+        $referralwallet->username = $user->username;
+        $referralwallet->balance = 0;
+        $referralwallet->save();
 
         //Save Record into Wallet DB
         $wallet = new Wallet();
@@ -192,7 +207,6 @@ class UserController extends Controller
 
         return back();
     }
-
 
     // Logout Function
     public function logout()

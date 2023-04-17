@@ -1,6 +1,6 @@
 @extends('layout.userapp')
 @section('title')
-Wallet Balance Withdrawal
+Deposits
 @endsection
 @section('content')
 
@@ -39,30 +39,22 @@ Wallet Balance Withdrawal
         <div class="row">
             <div class="col-md-8">
                 <div class="account-card">
-                    <h4 class="account-title">Choose your Withdrawal Option:</h4><br>
+                    <h4 class="account-title">Choose your Preffered Deposit Method:</h4><br>
                     <div class="row row-cols-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-2">
                         <div class="col">
                             <div class="panels" align="center">
-                                <h6 style="color: black;font-size:12px;">Task Earnings</h6>
-                                <img src="../assetsuser/images/wallet.png" width="50px" height="50px"><br>
-                                <a href="#" style="font-size: 11px;">Place withdrawal from task earnings and fund deposit balance.</a><br>
-                                <div class="my-wallet">
-                                    <p style="font-size: 15px;">Task Earning <br class="mobileshow"> Balance</p>
-                                    <h3 style="font-size: 18px;">₦{{ $walletbalance }}</h3>
-                                </div>
-                                <a href="{{ url('/user/place-Wallet-withdrawal') }}" class="btn btn-outlin" style="padding: 3px 8px 3px 8px;font-size:12px;">Continue</a>
+                                <h6 style="color: black;font-size:12px;">Manual Deposit</h6>
+                                <img src="../assetsuser/images/manual.png" width="50px" height="50px"><br>
+                                <a href="#" style="font-size: 11px;">Deposit into your account by manually transferring into miscochat account details and you will be funded manually by our staff</a><br>
+                                <a href="{{ url('/user/manual-deposit') }}" class="btn btn-outlin" style="padding: 3px 8px 3px 8px;font-size:12px;">Continue</a>
                             </div>
                         </div>
                         <div class="col">
                             <div class="panels" align="center">
-                                <h6 style="color: black;font-size:12px;">Referral Earnings</h6>
-                                <img src="../assetsuser/images/referral.png" width="50px" height="50px"><br>
-                                <a href="#" style="font-size: 11px;">Place withdrawal from your Referral earnings Wallet balance.</a><br>
-                                <div class="my-wallet">
-                                    <p style="font-size: 15px;">Referral Earning Balance</p>
-                                    <h3 style="font-size: 18px;">₦{{ $referralwalletbalance }}</h3>
-                                </div>
-                                <a href="{{ url('/user/place-referral-withdrawal') }}" class="btn btn-outlin" style="padding: 3px 8px 3px 8px;font-size:12px;">Continue</a>
+                                <h6 style="color: black;font-size:12px;">Automatice Deposit</h6>
+                                <img src="../assetsuser/images/automatic.png" width="50px" height="50px"><br>
+                                <a href="#" style="font-size: 11px;">Deposit into your account by using the automatic funding provided by our payment service provider and your wallet will be funded</a><br>
+                                <a href="{{ url('/user/fund-wallet') }}" class="btn btn-outlin" style="padding: 3px 8px 3px 8px;font-size:12px;">Continue</a>
                             </div>
                         </div>
                     </div>

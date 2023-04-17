@@ -9,6 +9,14 @@ Dashboard || Miscochat Concept
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                @foreach($noticeboard as $notice)
+                <div class="alert alert-primary alert-dismissible fade show" role="alert" style="padding: 20px;border-radius:7px;">
+                <h5>{{ $notice->title }}</h5>    
+                {{ $notice->notice_text }}
+                </div>
+                @endforeach
+            </div>
+            <div class="col-md-12">
                 @if(Auth::user()->activated == 0)
                 <div class="alert alert-danger alert-dismissible fade show" role="alert" style="padding: 20px;border-radius:7px;">
                     Account not Activated. to activate your account you must activate your account by paying a one-time membership fee of <strong>₦3,000</strong>. Click <a href="{{ url('/user/activate-account') }}">Here</a> to become a member today.
@@ -97,7 +105,7 @@ Dashboard || Miscochat Concept
         <div class="col-md-12">
             <div class="banner-btn" align="center">
                 <h4 style="text-align:center;"><strong>Your Refferal ID: {{ Auth::user()->username }} </strong> </h4> <br>
-                <a class="btn btn-inline" href="{{ url('/user/fund-wallet') }}"><i class="fas fa-credit-card"></i><span>FUND</span></a>
+                <a class="btn btn-inline" href="{{ url('/user/deposit-wallet') }}"><i class="fas fa-credit-card"></i><span>FUND</span></a>
                 <a class="btn btn-outline" href="{{ url('/user/place-withdrawal') }}"><i class="fa fa-wallet"></i><span>WITHDRAW</span></a>
             </div><br><br>
         </div>

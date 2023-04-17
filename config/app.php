@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Unicodeveloper\Paystack\PaystackServiceProvider::class,
+        KingFlamez\Rave\RaveServiceProvider::class,
 
 
         /*
@@ -231,6 +232,7 @@ return [
         'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class,
         'Carbon' => Illuminate\Support\Carbon::class,
         'Input' => Illuminate\Support\Facades\Input::class,
+        'Rave' => KingFlamez\Rave\Facades\Rave::class,
 
     ],
 

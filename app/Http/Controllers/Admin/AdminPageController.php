@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Coupon;
+use App\Models\Noticeboard;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Referral;
@@ -27,13 +28,15 @@ class AdminPageController extends Controller
     public function dashboard()
     {
         $walletBalance = Wallet::sum('balance');
-        $referralearn = DB::table('referrals')->join('users', 'referrals.user_id', '=', 'users.id')->where('users.activated', '=', 1)->sum('referrals.earnings');
+        $referralearn = DB::table('referral_wallets')->join('users', 'referral_wallets.user_id', '=', 'users.id')->where('users.activated', '=', 1)->sum('referral_wallets.balance');
         $data['totalbalance'] = $walletBalance + $referralearn;
         $data['taskearning'] = Transaction::where('type', '=', 'task earning')->sum('amount');
         $data['totaldeposit'] = Transaction::where('type', '=', 'deposit')->sum('amount');
         $data['totalwithdrawal'] = Transaction::where('type', '=', 'withdrawal')->sum('amount');
         $data['referralearnings'] = Referral::sum('earnings');
-        $data['totalspent'] = Transaction::where(function ($query) {$query->where('type', '=', 'topup')->orWhere('type', '=', 'advert task')->orWhere('type', '=', 'engagement task')->orWhere('type', '=', 'advert subscription');})->sum('amount');
+        $data['totalspent'] = Transaction::where(function ($query) {
+            $query->where('type', '=', 'topup')->orWhere('type', '=', 'advert task')->orWhere('type', '=', 'engagement task')->orWhere('type', '=', 'advert subscription');
+        })->sum('amount');
         $data['products'] = Product::where('status', 1)->count();
         $data['orders'] = Order::count();
         $data['users'] = User::where('role_id', 2)->count();
@@ -49,7 +52,8 @@ class AdminPageController extends Controller
 
     public function setting()
     {
-        return view('admin.setting');
+        $data['users'] = DB::table('users')->where('role_id', 2)->get();
+        return view('admin.setting', $data);
     }
 
     public function subadmins()
@@ -124,6 +128,18 @@ class AdminPageController extends Controller
         return view('admin.topup_plan', $data);
     }
 
+    public function manualdeposit(Request $request)
+    {
+        if (isset($_GET['query'])) {
+            $search_text = $request->input('query');
+            $data['searchtrack'] = User::where('email', 'LIKE', "%$search_text%")->get();
+            return view('admin.manual_deposit', $data);
+        }
+        else{
+            return view('admin.manual_deposit');
+        }
+    }
+
     public function pendingdeposit()
     {
         $data['pendingdeposit'] = Transaction::where('status', 0)->where('type', '=', 'deposit')->get();
@@ -136,6 +152,18 @@ class AdminPageController extends Controller
         return view('admin.activedeposit', $data);
     }
 
+    public function manualwithdrawal(Request $request)
+    {
+        if (isset($_GET['query'])) {
+            $search_text = $request->input('query');
+            $data['searchtrack'] = User::where('email', 'LIKE', "%$search_text%")->get();
+            return view('admin.manual_withdrawal', $data);
+        }
+        else{
+            return view('admin.manual_withdrawal');
+        }
+    }
+
     public function pendingwithdrawal()
     {
         $data['pendingwithdrawal'] = Transaction::where('status', 0)->where('type', '=', 'withdrawal')->get();
@@ -146,5 +174,11 @@ class AdminPageController extends Controller
     {
         $data['activewithdrawal'] = Transaction::where('status', 1)->where('type', '=', 'withdrawal')->get();
         return view('admin.activewithdrawal', $data);
+    }
+
+    public function noticeboard()
+    {
+        $data['noticeboard'] = Noticeboard::all();
+        return view('admin.noticeboard', $data);
     }
 }

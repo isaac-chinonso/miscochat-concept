@@ -37,7 +37,7 @@
                             <p>Registration is Fast and Free</p>
                         </div>
                         <div class="user-form-group">
-                            <form class="user-form" method="post" action="{{ url('savelogin') }}">
+                            <form method="POST" action="{{ route('saveuserlogin') }}" class="user-form">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">
@@ -94,7 +94,7 @@
                         </div>
                     </div>
                     <div class="user-form-remind">
-                        <p>Already Have An Account?<a href="{{ url('login') }}">login here</a></p>
+                        <p>Already Have An Account?<a href="{{ route('login') }}">login here</a></p>
                     </div>
                 </div>
             </div>

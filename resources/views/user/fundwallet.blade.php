@@ -48,16 +48,16 @@ Fund Wallet || Miscochat Concept
                     <h3 class="account-title">Fund Wallet</h3>
                     <p>Please Enter amount you want to fund your wallet with</p>
                     <br>
-                    <form method="post" action="{{ url('/user/deposit') }}" class="wallet-form">
+                    <form method="post" action="{{ route('payment.pay') }}" class="wallet-form">
                         @csrf
                         <div class="row row-cols-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-2">
                             <div class="col">
-                                <input type="hidden" name="email" value="{{ Auth::user()->email }}">
-                                <input type="hidden" name="metadata" value="{{ json_encode($array = ['user_id' => Auth::user()->id,'firstname' => Auth::user()->fname,'lastname' => Auth::user()->lname,'phone' => Auth::user()->phone,]) }}">
-                                <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}{{ Auth::user()->lname }}">
                                 <label>Amount <span class="text-danger">*</span></label>
                                 <input type="text" name="amount" placeholder="₦0.00">
-                                <input type="hidden" name="key" value="{{ config('paystack.secretKey') }}">
+                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                <input type="hidden" name="email" value="{{ Auth::user()->email }}">
+                                <input type="hidden" name="name" value="{{ Auth::user()->fname }} {{ Auth::user()->lname }}">
+                                <input type="hidden" name="phone_number" value="{{ Auth::user()->phone }}">
                             </div>
                             <div class="col">
                                 <button type="submit" style="margin-top: 25px;">Fund Wallet</button>

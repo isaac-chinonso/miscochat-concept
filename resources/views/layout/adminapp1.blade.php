@@ -109,7 +109,7 @@
                             <img src="../assetadmin/images/avatar/avatar-13.png" class="avatar avatar-lg bg-primary-light rounded100" alt="User Image">
                         </div>
                         <div class="info">
-                            <a class="dropdown-toggle px-20" data-toggle="dropdown" href="#">{{ Auth::user()->username }}</a>
+                            <a class="dropdown-toggle px-20" data-toggle="dropdown" href="#">{{ Auth::user()->username }} </a>
                             <div class="dropdown-menu">
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ url('/admin/settings') }}"><i class="ti-settings"></i> Settings</a>
@@ -125,6 +125,12 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ url('/admin/category') }}">
+                            <i class="icon-Layout-grid"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Product Category</span>
+                        </a>
+                    </li>
                     <li class="treeview">
                         <a href="#">
                             <i class="icon-Briefcase"><span class="path1"></span><span class="path2"></span></i>Adverts
@@ -134,7 +140,7 @@
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="{{ url('/admin/product') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products</a></li>
-                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Orders</a></li>
+                            <li><a href="{{ url('/admin/orders') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Orders</a></li>
                         </ul>
                     </li>
                     <li>
@@ -188,8 +194,9 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Pending Deposit</a></li>
-                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Completed Deposit </a></li>
+                            <li><a href="{{ url('/admin/manual-deposit') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Manual Deposit</a></li>
+                            <li><a href="{{ url('/admin/pending-deposit') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Pending Deposit</a></li>
+                            <li><a href="{{ url('/admin/active-deposit') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Completed Deposit </a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -200,14 +207,15 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Pending Withdrawal</a></li>
-                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Paid Withdrawal </a></li>
+                            <li><a href="{{ url('/admin/manual-withdrawal') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Manual Withdrawal</a></li>
+                            <li><a href="{{ url('/admin/pending-withdrawal') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Pending Withdrawal</a></li>
+                            <li><a href="{{ url('/admin/active-withdrawal') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Paid Withdrawal </a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{ url('/admin/notice-board') }}">
                             <i class="icon-Chat"><span class="path1"></span><span class="path2"></span></i>
-                            <span>Support</span>
+                            <span>Notice Board</span>
                         </a>
                     </li>
                 </ul>

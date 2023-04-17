@@ -56,7 +56,7 @@ Pending Withdrawal History || Miscochat Concept
 
                                             <td>{{ $transact->user->username }}</td>
                                             <td>{{ $transact->created_at->format('d M Y ') }}</td>
-                                            <td>₦{{ number_format($transact->amount, 0, '.', ', ') }}</td>
+                                            <td>₦{{ number_format($transact->amount,0,'.',',') }}</td>
                                             <td>{{ $transact->type }}</td>
                                             <td>
                                                 @if($transact->status == 0)
@@ -66,9 +66,10 @@ Pending Withdrawal History || Miscochat Concept
                                                 @endif
                                             </td>
                                             <td>
-                                                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-default{{ $transact->id }}"> Approve </button>
+                                                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#activate{{ $transact->id }}"> Approve </button>
+                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#decline{{ $transact->id }}"> Decline </button>
                                             </td>
-                                            <!-- modal content -->
+                                            <!--Approve modal content -->
                                             <div id="activate{{ $transact->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
@@ -78,11 +79,31 @@ Pending Withdrawal History || Miscochat Concept
                                                         </div>
                                                         <div class="modal-body">
                                                             <h4><strong>Mark Withdrawal as Paid</strong></h4>
-                                                            <p>Are you sure you want to Mark Withdrawal as Paid</p>
+                                                            <p>Are you sure you want to Mark Withdrawal of <strong>₦{{ number_format($transact->amount,0,'.',',') }}</strong> from <strong>{{ $transact->user->username }}</strong> as Paid</p>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                                                            <a href="{{ route('adminapprovetopup',$transact->id) }}" class="btn btn-success btn-sm waves-effect waves-light">Approve Withdrawal</a>
+                                                            <a href="{{ route('adminapprovewithdrawal',$transact->id) }}" class="btn btn-success btn-sm waves-effect waves-light">Approve Withdrawal</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal -->
+                                            <!--Decline modal content -->
+                                            <div id="decline{{ $transact->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="myModalLabel">Decline Withdrawal</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h4><strong>Decline  Withdrawal</strong></h4>
+                                                            <p>Are you sure you want to Decline Withdrawal of <strong>₦{{ number_format($transact->amount, 0,'.',',') }}</strong> from <strong>{{ $transact->user->username }}</strong></p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                                            <a href="{{ route('admindeclinewithdrawal',$transact->id) }}" class="btn btn-danger btn-sm waves-effect waves-light">Decline Withdrawal</a>
                                                         </div>
                                                     </div>
                                                 </div>

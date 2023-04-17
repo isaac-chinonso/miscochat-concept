@@ -1,6 +1,6 @@
 @extends('layout.userapp')
 @section('title')
-Wallet Balance Withdrawal
+Referral Earnings Withdrawal
 @endsection
 @section('content')
 
@@ -29,6 +29,10 @@ Wallet Balance Withdrawal
                                 @elseif (date("H") >= 15 && date("H") < 24) Good evening, <span class="text-danger"> {{ Auth::user()->username }}</span>
                                     @endif
                     </h3>
+                    <div class="my-wallet">
+                        <p>Referral Earning Balance</p>
+                        <h3>₦{{ $referralwalletbalance }}</h3>
+                    </div>
                 </div>
             </div>
         </div>
@@ -39,31 +43,58 @@ Wallet Balance Withdrawal
         <div class="row">
             <div class="col-md-8">
                 <div class="account-card">
-                    <h4 class="account-title">Choose your Withdrawal Option:</h4><br>
-                    <div class="row row-cols-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-2">
-                        <div class="col">
-                            <div class="panels" align="center">
-                                <h6 style="color: black;font-size:12px;">Task Earnings</h6>
-                                <img src="../assetsuser/images/wallet.png" width="50px" height="50px"><br>
-                                <a href="#" style="font-size: 11px;">Place withdrawal from task earnings and fund deposit balance.</a><br>
-                                <div class="my-wallet">
-                                    <p style="font-size: 15px;">Task Earning <br class="mobileshow"> Balance</p>
-                                    <h3 style="font-size: 18px;">₦{{ $walletbalance }}</h3>
-                                </div>
-                                <a href="{{ url('/user/place-Wallet-withdrawal') }}" class="btn btn-outlin" style="padding: 3px 8px 3px 8px;font-size:12px;">Continue</a>
+                    <h3 class="account-title">Place Withdrawal from Referral Earnings</h3>
+                    <p>Please Enter amount you want to withdraw from your Referral Earnings</p>
+                    <h6>Minimum Withdrawal is ₦4000</h6>
+                    <br>
+                    <form method="post" action="{{ url('/user/referral-withdraw') }}" class="wallet-form">
+                        @csrf
+                        <div class="row row-cols-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-2">
+                            <div class="col">
+                                <label>Amount (₦)<span class="text-danger">*</span></label>
+                                <input type="text" name="amount" placeholder="₦0.00">
+                            </div>
+                            <div class="col">
+                                <button type="submit" style="margin-top: 25px;">Withdraw</button>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="panels" align="center">
-                                <h6 style="color: black;font-size:12px;">Referral Earnings</h6>
-                                <img src="../assetsuser/images/referral.png" width="50px" height="50px"><br>
-                                <a href="#" style="font-size: 11px;">Place withdrawal from your Referral earnings Wallet balance.</a><br>
-                                <div class="my-wallet">
-                                    <p style="font-size: 15px;">Referral Earning Balance</p>
-                                    <h3 style="font-size: 18px;">₦{{ $referralwalletbalance }}</h3>
-                                </div>
-                                <a href="{{ url('/user/place-referral-withdrawal') }}" class="btn btn-outlin" style="padding: 3px 8px 3px 8px;font-size:12px;">Continue</a>
-                            </div>
+                    </form><br>
+                    <p style="font-size: 13px;">Please note that withdrawal takes between 24-48hrs to get credited into your registered bank account</p>
+                </div>
+                <div class="account-card">
+                    <h3 class="account-title">My Withdrawal History </h3>
+                    <div class="orderlist">
+                        <div class="table-scroll table-responsive">
+                            <table class="table table-stripped table-list">
+                                <thead>
+                                    <tr style="background-color: #5f04f6;">
+                                        <th class="text-white" scope="col">#</th>
+                                        <th class="text-white">Date</th>
+                                        <th class="text-white">Amount</th>
+                                        <th class="text-white">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $number = 1; ?>
+                                    @foreach($transaction as $transact)
+                                    <tr>
+                                        <td>
+                                            <h6>{{ $number }}</h6>
+                                        </td>
+                                        <td>{{ $transact->created_at->format('d M Y ') }}</td>
+                                        <td>₦{{ number_format($transact->amount, 0, '.', ', ') }}</td>
+                                        <td>
+                                            @if($transact->status == 0)
+                                            <span class="badge bg-danger">Awaiting Payment</span>
+                                            @elseif($transact->status == 1)
+                                            <span class="badge bg-success">Paid</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    <?php $number++; ?>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

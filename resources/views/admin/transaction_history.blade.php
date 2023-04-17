@@ -59,9 +59,11 @@ Transaction History || Miscochat Concept
                                             <td>{{ $transact->type }}</td>
                                             <td>
                                                 @if($transact->status == 0)
-                                                <span class="badge bg-danger">Pending</span>
+                                                <span class="badge bg-warning">Pending</span>
                                                 @elseif($transact->status == 1)
                                                 <span class="badge bg-success">Paid</span>
+                                                @elseif($transact->status == 2)
+                                                <span class="badge bg-danger">Declined</span>
                                                 @endif
                                             </td>
                                         </tr>

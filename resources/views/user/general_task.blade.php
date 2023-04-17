@@ -135,7 +135,7 @@ My Task || Miscochat Concept
                     <div class="intro-icon "><i class="fas fa-user-plus "></i></div>
                     <div class="intro-content ">
                         <h5>Refferal commision</h5>
-                        <p>Earn an instant refferal commision of N2000 when you refer someone to become a member on Miscokit. The more you refer, the more you earn. Click here to view how refferal works.</p>
+                        <p>Earn an instant refferal commision of N2000 when you refer someone to become a member on Miscochat. The more you refer, the more you earn. Click here to view how refferal works.</p>
                     </div>
                 </div>
             </div>
@@ -155,7 +155,7 @@ My Task || Miscochat Concept
                     <div class="intro-icon "><i class="fas fa-signal "></i></div>
                     <div class="intro-content ">
                         <h5>Airtime/Data</h5>
-                        <p>Buy airtime or data on Miscokit at cheapest rate and sell to friends and family at high prices. Click here to see how airtime and data works.</p>
+                        <p>Buy airtime or data on Miscochat at cheapest rate and sell to friends and family at high prices. Click here to see how airtime and data works.</p>
                     </div>
                 </div>
             </div>

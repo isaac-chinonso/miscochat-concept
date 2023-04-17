@@ -9,54 +9,49 @@ use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
-use Paystack;
+use KingFlamez\Rave\Facades\Rave as Flutterwave;
 
 class UserPaymentController extends Controller
 {
-    /**
-     * Redirect the User to Paystack Payment Page
-     * @return Url
-     */
-    public function redirectToGateway()
+
+    public function callback(Request $request)
     {
-        return Paystack::getAuthorizationUrl()->redirectNow();
-    }
+        $status = request()->status;
 
-    /**
-     * Obtain Paystack payment information
-     * @return void
-     */
-    public function handleGatewayCallback(Request $request)
-    {
-        $paymentDetails = Paystack::getPaymentData();
+        //if payment is successful
+        if ($status ==  'successful') {
 
-        if ($paymentDetails['data']) {
+            $transactionID = Flutterwave::getTransactionIDFromCallback();
+            $paymentDetails = Flutterwave::verifyTransaction($transactionID);
 
-            $amount = $paymentDetails['data']['amount'] / 100;
-            // Save Record into Payment DB
-            $user = Auth::user();
-            $payment = $request->all();
-            $payment = new Payment();
-            $payment->user_id = $user->id;
-            $payment->reference = $paymentDetails['data']['reference'];
-            $payment->customer_email = $paymentDetails['data']['customer']['email'];
-            $payment->amount = $amount;
-            $payment->channel = $paymentDetails['data']['channel'];
-            $payment->gateway_response = $paymentDetails['data']['gateway_response'];
-            $payment->ip_address = $paymentDetails['data']['ip_address'];
-            $payment->status = $paymentDetails['data']['status'];
-            $payment->save();
-            
-            $walletfund = Wallet::where('user_id', $user->id)->first();
-            $walletfund->balance += $amount;
-            $walletfund->save();
+            if ($paymentDetails['data']) {
 
-            Transaction::where(['user_id' => $user->id])
-                ->update(array('status' => 1));
+                $amount = $paymentDetails['data']['amount'];
+                // Save Record into Payment DB
+                $user = Auth::user();
+                $payment = $request->all();
+                $payment = new Payment();
+                $payment->user_id = $user->id;
+                $payment->reference = $paymentDetails['data']['flw_ref'];
+                $payment->customer_email = $paymentDetails['data']['customer']['email'];
+                $payment->amount = $amount;
+                $payment->channel = $paymentDetails['data']['payment_type'];
+                $payment->gateway_response = $paymentDetails['data']['processor_response'];
+                $payment->ip_address = $paymentDetails['data']['ip'];
+                $payment->status = $paymentDetails['data']['status'];
+                $payment->save();
 
-            \Session::flash('Success_message', '✔ Payment made successfully');
+                $walletfund = Wallet::where('user_id', $user->id)->first();
+                $walletfund->balance += $amount;
+                $walletfund->save();
 
-            return redirect()->route('userdashboard');
+                Transaction::where(['user_id' => $user->id])
+                    ->update(array('status' => 1));
+
+                \Session::flash('Success_message', '✔ Payment made successfully');
+
+                return redirect()->route('userdashboard');
+            }
         }
     }
 }

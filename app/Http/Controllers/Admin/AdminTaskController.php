@@ -18,42 +18,10 @@ class AdminTaskController extends Controller
     // Save task allocated
     public function savetask(Request $request, $id)
     {
-        // Validation
-        $this->validate($request, [
-            'order_id' => 'required|unique:tasks|max:10',
-        ]);
-
-        $order = Order::where('id', $id)->first();
-        $tasksToAssign = $order->quantity;
-
-        if ($tasksToAssign > 0) {
-            $userstask = User::where('activated', 1)->where('role_id', 2)->inRandomOrder()->take($tasksToAssign)->get();
-
-            foreach ($userstask as $user) {
-                $task = new Task();
-                $task->order_id = $request->input('order_id');
-                $task->buyer_id = $request->input('buyer_id');
-                $task->user_id = $user->id;
-                $task->status = 1;
-                $task->accept_status = 0;
-                $task->save();
-            }
-        }
-
-        Order::where(['id' => $task->order_id])
-            ->update(array('status' => 1));
-
-        \Session::flash('Success_message', '✔ Task allocated to Users Succeffully');
-
-        return back();
-    }
-
-
-    public function approveorder($id)
-    {
         Order::where(['id' => $id])
             ->update(array('status' => 1));
-        \Session::flash('Success_message', '✔ Order Approved Succeffully');
+
+        \Session::flash('Success_message', '✔ Order Activated Succeffully');
 
         return back();
     }

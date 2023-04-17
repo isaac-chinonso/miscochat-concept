@@ -5,15 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Coupon;
+use App\Models\Noticeboard;
 use App\Models\Product;
+use App\Models\ReferralWallet;
 use App\Models\Topup;
 use App\Models\Topup_Plan;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use PHPUnit\Framework\Error\Notice;
 
 class AdminPostController extends Controller
 {
@@ -142,7 +147,7 @@ class AdminPostController extends Controller
 
         return back();
     }
-    
+
 
     // Save Mobile Topup Plan
     public function savetopupplan(Request $request)
@@ -215,9 +220,9 @@ class AdminPostController extends Controller
 
     public function approvetopup($id)
     {
-       // Mark Topup as done
-       Topup::where(['id' => $id])
-       ->update(array('status' => 1));
+        // Mark Topup as done
+        Topup::where(['id' => $id])
+            ->update(array('status' => 1));
 
         \Session::flash('Success_message', 'Topup Approved Successfully');
 
@@ -226,11 +231,22 @@ class AdminPostController extends Controller
 
     public function approvewithdrawal($id)
     {
-       // Mark Withdrawal as Paid
-       Transaction::where(['id' => $id])
-       ->update(array('status' => 1));
+        // Mark Withdrawal as Paid
+        Transaction::where(['id' => $id])
+            ->update(array('status' => 1));
 
         \Session::flash('Success_message', 'Withdrawal Mark as Paid Successfully');
+
+        return back();
+    }
+
+    public function declinewithdrawal($id)
+    {
+        // Decline Withdrawal
+        Transaction::where(['id' => $id])
+            ->update(array('status' => 2));
+
+        \Session::flash('Success_message', 'Withdrawal Declined Successfully');
 
         return back();
     }
@@ -245,4 +261,157 @@ class AdminPostController extends Controller
 
         return back();
     }
+
+    public function savedeposit(Request $request)
+    {
+        // Validation
+        $this->validate($request, [
+            'amount' => 'required',
+        ]);
+
+        $user_id = $request->input('user_id');
+        $amount = $request->input('amount');
+
+        $walletfund = Wallet::where('user_id', $user_id)->first();
+        $walletfund->balance += $amount;
+        $walletfund->save();
+
+        $transaction = new Transaction();
+        $transaction->user_id = $user_id;
+        $transaction->amount = $amount;
+        $transaction->type = 'deposit';
+        $transaction->status = 1;
+        $transaction->save();
+
+        \Session::flash('Success_message', '✔ Deposited successfully');
+
+        return back();
+    }
+
+    //  Wallet Withdrawal Function
+    public function savetaskwithdrawal(Request $request)
+    {
+        // Validation
+        $validator = Validator::make($request->all(), [
+            'amount' => 'required|numeric|min:4000',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $user_id = $request->input('user_id');
+        $amount = $request->input('amount');
+
+        $walletfund = Wallet::where('user_id', $user_id)->first();
+        if ($walletfund->balance < $amount) {
+            return redirect()->back()->with('warning_message', 'Insufficient balance!');
+        } else {
+            $walletfund->balance -= $amount;
+            $walletfund->save();
+
+            $transaction = new Transaction();
+            $transaction->user_id = $user_id ;
+            $transaction->amount = $amount;
+            $transaction->type = 'withdrawal';
+            $transaction->status = 0;
+            $transaction->save();
+        }
+
+        \Session::flash('Success_message', 'Task Earning Withdrawal Placed Successfully');
+        return back();
+    }
+
+    // Referral Earning Withdrawal Function
+    public function savereferralwithdrawal(Request $request)
+    {
+        // Validation
+        $validator = Validator::make($request->all(), [
+            'amount' => 'required|numeric|min:4000',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $user_id = $request->input('user_id');
+        $amount = $request->input('amount');
+
+        $referralwalletfund = ReferralWallet::where('user_id', $user_id)->first();
+        if ($referralwalletfund->balance < $amount) {
+            return redirect()->back()->with('warning_message', 'Insufficient balance!');
+        } else {
+            $referralwalletfund->balance -= $amount;
+            $referralwalletfund->save();
+
+            $transaction = new Transaction();
+            $transaction->user_id = $user_id;
+            $transaction->amount = $amount;
+            $transaction->type = 'referral earning';
+            $transaction->status = 0;
+            $transaction->save();
+        }
+
+        \Session::flash('Success_message', 'Referral Earning Withdrawal Placed Successfully');
+        return back();
+    }
+
+    // Post Notice Board Content
+    public function savenoticeboard(Request $request)
+    {
+        // Validation
+        $this->validate($request, [
+            'title' => 'required',
+            'notice_text' => 'required',
+        ]);
+
+        // Save Record into Noticeboard DB
+        $notice = new Noticeboard();
+        $notice->title = $request->input('title');
+        $notice->notice_text = $request->input('notice_text');
+        $notice->status = 1;
+        $notice->save();
+
+        \Session::flash('Success_message', 'Notice Added Successfully');
+
+        return back();
+    }
+
+    // Update Notice Board function
+    public function updatenoticeboard(Request $request, $id)
+    {
+        // Validation
+        $this->validate($request, array(
+            'title' => 'required',
+            'notice_text' => 'required',
+        ));
+
+        $notice = Noticeboard::find($id);
+
+        $notice->title = $request->input('title');
+
+        $notice->notice_text = $request->input('notice_text');
+
+        $notice->save();
+
+        \Session::flash('Success_message', '✔ Announcement Updated Succeffully');
+
+        return back();
+    }
+
+    public function deletenoticeboard($id)
+    {
+        // Delete Notice Board
+        $notice = Noticeboard::where('id', $id)->first();
+        $notice->delete();
+
+        \Session::flash('Success_message', '✔ Announcement Deleted Successfully');
+
+        return back();
+    }
+    
 }

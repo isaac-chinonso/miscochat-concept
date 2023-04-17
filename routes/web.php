@@ -29,7 +29,7 @@ Route::get('/about', [PageController::class, 'about']);
 
 Route::get('/marketplace', [PageController::class, 'marketplace']);
 
-Route::get('product-details/{slug}', [PageController::class, 'productdetails'])->name('productdetails');
+Route::get('/product-details/{slug}', [PageController::class, 'productdetails'])->name('productdetails');
 
 Route::get('/support', [PageController::class, 'support']);
 
@@ -37,13 +37,13 @@ Route::get('/buy-coupon', [PageController::class, 'buycoupon']);
 
 Route::get('/privacy-policy', [PageController::class, 'policy']);
 
-Route::post('signin', [UserController::class, 'signin']);
+Route::post('/signin', [UserController::class, 'signin']);
+
+Route::post('/postregister', [UserController::class, 'postregister'])->name('saveuserlogin');
 
 Route::get('/register', [PageController::class, 'register']);
 
-Route::get('login', [PageController::class, 'login'])->name('login');
-
-Route::post('savelogin', [UserController::class, 'savelogin']);
+Route::get('/login', [PageController::class, 'login'])->name('login');
 
 Route::get('/forget-password', [PageController::class, 'resetpassword'])->name('forget.password.get');
 
@@ -86,21 +86,31 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'before' => 'user'], f
 
     Route::post('/activate-user', [UserPostController::class, 'activateuser']);
 
+    Route::get('/deposit-wallet', [UserPageController::class, 'depositwallet'])->name('userdepositwallet');
+
+    Route::get('/manual-deposit', [UserPageController::class, 'manualdeposit'])->name('usermanualdeposit');
+
     Route::get('/fund-wallet', [UserPageController::class, 'fundwallet'])->name('userfundwallet');
 
     Route::get('/pay-wallet', [UserPageController::class, 'orderfee'])->name('payment');
 
     Route::post('/deposit', [UserTransactionController::class, 'deposit']);
 
-    Route::post('/pay', [UserPaymentController::class, 'redirectToGateway'])->name('pay'); 
+    Route::post('/payment/pay', [UserTransactionController::class, 'initialize'])->name('payment.pay');
 
-    Route::get('/payment/callback', [UserPaymentController::class, 'handleGatewayCallback']);
+    Route::get('/payment/callback', [UserPaymentController::class, 'callback'])->name('payment.callback');
 
     Route::get('delete-transaction/{id}', [UserTransactionController::class, 'deletetransaction'])->name('deleteusertransaction');
 
     Route::get('/place-withdrawal', [UserPageController::class, 'placewithdrawal']);
 
+    Route::get('/place-Wallet-withdrawal', [UserPageController::class, 'placewalletwithdrawal']);
+
     Route::post('/withdraw', [UserTransactionController::class, 'withdraw']);
+
+    Route::get('/place-referral-withdrawal', [UserPageController::class, 'placereferrawithdrawal']);
+
+    Route::post('/referral-withdraw', [UserTransactionController::class, 'referralwithdraw']);
 
     Route::get('/airtime-data-topup', [UserPageController::class, 'topuprequest']);
 
@@ -147,7 +157,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'before' => 'user'], f
     Route::get('delete-advert-order/{id}', [UserPostController::class, 'deleteadvertorder'])->name('deleteuseradvertorder');
 
     Route::get('delete-engagement-order/{id}', [UserPostController::class, 'deleteengagementorder'])->name('deleteuserengagementorder');
-
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'before' => 'admin'], function () {
@@ -200,6 +209,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'before' => 'admin'],
 
     Route::get('/transaction-history', [AdminPageController::class, 'transactions']);
 
+    Route::get('/manual-deposit', [AdminPageController::class, 'manualdeposit'])->name('searchuser');
+
+    Route::post('/add-deposit', [AdminPostController::class, 'savedeposit']);
+
     Route::get('/pending-deposit', [AdminPageController::class, 'pendingdeposit']);
 
     Route::get('/active-deposit', [AdminPageController::class, 'activedeposit']);
@@ -218,12 +231,27 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'before' => 'admin'],
 
     Route::post('update-mobile-topup-plan/{id}', [AdminPostController::class, 'updatetopupplan'])->name('updatetopupplan');
 
+    Route::get('/manual-withdrawal', [AdminPageController::class, 'manualwithdrawal'])->name('searchwithdrawaluser');
+
+    Route::post('/task-earning-withdrawal', [AdminPostController::class, 'savetaskwithdrawal']);
+
+    Route::post('/referral-earning-withdrawal', [AdminPostController::class, 'savereferralwithdrawal']);
+
     Route::get('/pending-withdrawal', [AdminPageController::class, 'pendingwithdrawal']);
 
     Route::get('/active-withdrawal', [AdminPageController::class, 'pendingwithdrawal']);
 
     Route::get('/approve-withdrawal/{id}', [AdminPostController::class, 'approvewithdrawal'])->name('adminapprovewithdrawal');
 
+    Route::get('/decline-withdrawal/{id}', [AdminPostController::class, 'declinewithdrawal'])->name('admindeclinewithdrawal');
+
+    Route::get('/notice-board', [AdminPageController::class, 'noticeboard']);
+
+    Route::post('/save-notice-board', [AdminPostController::class, 'savenoticeboard']);
+
+    Route::post('/update-notice-board/{id}', [AdminPostController::class, 'updatenoticeboard'])->name('adminupdatenoticeboard');
+
+    Route::get('/delete-notice-board/{id}', [AdminPostController::class, 'deletenoticeboard'])->name('admindeletenoticeboard');
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'subadmin', 'before' => 'subadmin'], function () {
@@ -235,5 +263,4 @@ Route::group(['middleware' => 'auth', 'prefix' => 'subadmin', 'before' => 'subad
     Route::get('/active-topup', [SubadminPageController::class, 'activetopup']);
 
     Route::get('/members', [SubadminPageController::class, 'member']);
-
 });

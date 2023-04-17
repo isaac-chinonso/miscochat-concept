@@ -132,7 +132,7 @@
                             </li>
 
                             <li class="navbar-item dropdown-megamenu ">
-                                <a href="{{ url('/user/fund-wallet') }}"><i class="fa fa-credit-card"></i> Fund wallet</a>
+                                <a href="{{ url('/user/deposit-wallet') }}"><i class="fa fa-credit-card"></i> Fund wallet</a>
                             </li>
 
                             <li class="navbar-item dropdown-megamenu ">
@@ -208,7 +208,7 @@
             </li>
             <li><a class="nav-link" href="{{ url('/user/accepted-task') }}"><i class="fa fa-list"></i>Accepted Task</a> </li>
 
-            <li><a class="nav-link" href="{{ url('/user/fund-wallet') }}"><i class="icofont-bag-alt"></i>Fund Wallet</a> </li>
+            <li><a class="nav-link" href="{{ url('/user/deposit-wallet') }}"><i class="icofont-bag-alt"></i>Fund Wallet</a> </li>
 
             <li><a class="nav-link" href="{{ url('/user/place-withdrawal') }}"><i class="icofont-money "></i>Place withdrawal</a></li>
 
@@ -247,7 +247,7 @@
                 <div class="col-sm-12 col-xl-12 text-center">
                     <div class="footer-widget ">
                         <a class="footer-logo " href="# "><img src="../../assetsuser/images/logo1.png " alt="logo "></a>
-                        <p class="footer-desc ">Miscokit is the best platform best platform best platform best platform ever.</p>
+                        <p class="footer-desc ">Miscochat is the best platform best platform best platform best platform ever.</p>
                         <ul class="footer-social ">
                             <li>
                                 <a class="icofont-facebook " href="#"></a>

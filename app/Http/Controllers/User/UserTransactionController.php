@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\ReferralWallet;
 use App\Models\Subscription;
 use App\Models\Topup;
 use App\Models\Transaction;
@@ -10,11 +11,13 @@ use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use KingFlamez\Rave\Facades\Rave as Flutterwave;
+
 use Paystack;
 
 class UserTransactionController extends Controller
 {
-    public function deposit(Request $request)
+    public function initialize(Request $request)
     {
         // Validation
         $this->validate($request, [
@@ -25,11 +28,17 @@ class UserTransactionController extends Controller
         $amount = $request->input('amount');
 
         $data = array(
-            "amount" =>  $amount * 100,
-            "reference" => 'wallet_funding_' . time(),
-            'email' => auth()->user()->email,
-            'username' => Auth::user()->username,
-            'phone' => Auth::user()->phone,
+            "amount" =>  $amount,
+            "email" => auth()->user()->email,
+            "tx_ref" => 'wallet_funding_' . time(),
+            "currency" => "NGN",
+            "payment_options" => "card",
+            "redirect_url" => route('payment.callback'),
+            'customer' => [
+                'email' => request()->email,
+                "phone_number" => request()->phone_number,
+                "name" => request()->name
+            ],
         );
 
         $transaction = new Transaction();
@@ -39,9 +48,13 @@ class UserTransactionController extends Controller
         $transaction->status = 0;
         $transaction->save();
 
-        return Paystack::getAuthorizationUrl($data)->redirectNow();
+
+        $payment = Flutterwave::initializePayment($data); 
+
+        return redirect($payment['data']['link']);
     }
 
+    //  Wallet Withdrawal Function
     public function withdraw(Request $request)
     {
         // Validation
@@ -56,7 +69,7 @@ class UserTransactionController extends Controller
         }
 
         $user = Auth::user();
-        $walletfund = Wallet::find($user->id);
+        $walletfund = Wallet::where('user_id', $user->id)->first();
         $amount = $request->input('amount');
         if ($walletfund->balance < $amount) {
             return redirect()->back()->with('warning_message', 'Insufficient balance!');
@@ -76,10 +89,58 @@ class UserTransactionController extends Controller
         return back();
     }
 
+    // Referral Earning Withdrawal Function
+    public function referralwithdraw(Request $request)
+    {
+        // Validation
+        $validator = Validator::make($request->all(), [
+            'amount' => 'required|numeric|min:4000',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $user = Auth::user();
+        $referralwalletfund = ReferralWallet::where('user_id', $user->id)->first();
+        $amount = $request->input('amount');
+        if ($referralwalletfund->balance < $amount) {
+            return redirect()->back()->with('warning_message', 'Insufficient balance!');
+        } else {
+            $referralwalletfund->balance -= $amount;
+            $referralwalletfund->save();
+
+            $transaction = new Transaction();
+            $transaction->user_id = auth()->id();
+            $transaction->amount = $amount;
+            $transaction->type = 'referral earning';
+            $transaction->status = 0;
+            $transaction->save();
+        }
+
+        \Session::flash('Success_message', 'Withdrawal Placed Successfully');
+        return back();
+    }
+
     public function topup(Request $request)
     {
+         // Validation
+         $validator = Validator::make($request->all(), [
+            'amount' => 'required',
+            'network' => 'required',
+            'phone' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        
         $user = Auth::user();
-        $walletfund = Wallet::find($user->id);
+        $walletfund = Wallet::where('user_id', $user->id)->first();
         $amount = $request->input('amount');
         if ($walletfund->balance < $amount) {
             return redirect()->back()->with('warning_message', 'Insufficient balance!');
@@ -121,7 +182,7 @@ class UserTransactionController extends Controller
 
     public function advertsubscription(Request $request)
     {
-          // Validation
+        // Validation
         $this->validate($request, [
             'amount' => 'required',
         ]);
