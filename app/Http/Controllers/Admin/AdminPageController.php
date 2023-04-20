@@ -176,6 +176,18 @@ class AdminPageController extends Controller
         return view('admin.activewithdrawal', $data);
     }
 
+    public function pendingreferrawithdrawal()
+    {
+        $data['pendingwithdrawal'] = Transaction::where('status', 0)->where('type', '=', 'referral earning')->get();
+        return view('admin.pending_referral_withdrawal', $data);
+    }
+
+    public function activereferralwithdrawal()
+    {
+        $data['activewithdrawal'] = Transaction::where('status', 1)->where('type', '=', 'referral earning')->get();
+        return view('admin.activereferralwithdrawal', $data);
+    }
+
     public function noticeboard()
     {
         $data['noticeboard'] = Noticeboard::all();

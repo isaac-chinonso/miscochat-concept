@@ -237,9 +237,13 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'before' => 'admin'],
 
     Route::post('/referral-earning-withdrawal', [AdminPostController::class, 'savereferralwithdrawal']);
 
+    Route::get('/pending-referral-withdrawal', [AdminPageController::class, 'pendingreferrawithdrawal']);
+
+    Route::get('/active-referral-withdrawal', [AdminPageController::class, 'activereferralwithdrawal']);
+
     Route::get('/pending-withdrawal', [AdminPageController::class, 'pendingwithdrawal']);
 
-    Route::get('/active-withdrawal', [AdminPageController::class, 'pendingwithdrawal']);
+    Route::get('/active-withdrawal', [AdminPageController::class, 'activewithdrawal']);
 
     Route::get('/approve-withdrawal/{id}', [AdminPostController::class, 'approvewithdrawal'])->name('adminapprovewithdrawal');
 
