@@ -59,7 +59,7 @@ class UserTransactionController extends Controller
     {
         // Validation
         $validator = Validator::make($request->all(), [
-            'amount' => 'required|numeric|min:4000',
+            'amount' => 'required|numeric|min:3900',
         ]);
 
         if ($validator->fails()) {
@@ -94,7 +94,7 @@ class UserTransactionController extends Controller
     {
         // Validation
         $validator = Validator::make($request->all(), [
-            'amount' => 'required|numeric|min:4000',
+            'amount' => 'required|numeric|min:3900',
         ]);
 
         if ($validator->fails()) {

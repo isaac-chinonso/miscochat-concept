@@ -37,13 +37,13 @@ Route::get('/buy-coupon', [PageController::class, 'buycoupon']);
 
 Route::get('/privacy-policy', [PageController::class, 'policy']);
 
-Route::post('/signin', [UserController::class, 'signin']);
+Route::get('/login', [PageController::class, 'login'])->name('login');
 
-Route::post('/postregister', [UserController::class, 'postregister'])->name('saveuserlogin');
+Route::post('/signin', [UserController::class, 'signin']);
 
 Route::get('/register', [PageController::class, 'register']);
 
-Route::get('/login', [PageController::class, 'login'])->name('login');
+Route::post('/save-registeration', [UserController::class, 'postregister'])->name('saveuserlogin');
 
 Route::get('/forget-password', [PageController::class, 'resetpassword'])->name('forget.password.get');
 

@@ -39,7 +39,8 @@ Wallet Balance Withdrawal
         <div class="row">
             <div class="col-md-8">
                 <div class="account-card">
-                    <h4 class="account-title">Choose your Withdrawal Option:</h4><br>
+                    <h4 class="account-title">Choose your Withdrawal Option:</h4>
+                    <p style="font-size: 14px;">Kindly Update your bank account details before placing withdrawal. to update your bank details click <a href="{{ url('user/bank') }}">here</a></p><br>
                     <div class="row row-cols-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-2">
                         <div class="col">
                             <div class="panels" align="center">

@@ -37,7 +37,7 @@
                             <p>Registration is Fast and Free</p>
                         </div>
                         <div class="user-form-group">
-                            <form method="POST" action="{{ route('saveuserlogin') }}" class="user-form">
+                            <form method="post" action="{{ url('save-registeration') }}" class="user-form">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">

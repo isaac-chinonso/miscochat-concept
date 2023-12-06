@@ -69,11 +69,15 @@ Orders || Miscochat Concept
                                             <td>{{ $ord->location }} </td>
                                             <td>{{ $ord->religion }}</td>
                                             <td>
+                                                @if($ord->type == 'engagement')
+                                                <a href="{{ $ord->image }}" target="_blank">{{ $ord->image }}</a>
+                                                @elseif($ord->type == 'advert')
                                                 <div class="d-flex align-items-center">
                                                     <div class="mr-25 h-60 w-60 rounded text-center b-1">
                                                         <img src="../advert/{{ $ord->image }}" class="align-self-center" alt="">
                                                     </div>
                                                 </div>
+                                                @endif
                                             </td>
                                             <td>{{ $ord->caption }}</td>
                                             <td>

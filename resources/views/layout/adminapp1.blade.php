@@ -210,7 +210,7 @@
                             <li><a href="{{ url('/admin/manual-withdrawal') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Manual Withdrawal</a></li>
                             <li><a href="{{ url('/admin/pending-withdrawal') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Pending Withdrawal</a></li>
                             <li><a href="{{ url('/admin/active-withdrawal') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Paid Withdrawal </a></li>
-                            <li><a href="{{ url('/admin//pending-referral-withdrawal') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Pending Referral Payment</a></li>
+                            <li><a href="{{ url('/admin/pending-referral-withdrawal') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Pending Referral Payment</a></li>
                             <li><a href="{{ url('/admin/active-referral-withdrawal') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Paid Referral Withdrawal </a></li>
                         </ul>
                     </li>

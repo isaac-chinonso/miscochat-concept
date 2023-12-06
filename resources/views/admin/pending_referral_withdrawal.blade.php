@@ -43,6 +43,7 @@ Pending Referral Withdrawal || Miscochat Concept
                                             <th>Amount</th>
                                             <th>Type</th>
                                             <th>Status</th>
+                                            <th>Bank </th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -64,6 +65,11 @@ Pending Referral Withdrawal || Miscochat Concept
                                                 @elseif($transact->status == 1)
                                                 <span class="badge bg-success">Paid</span>
                                                 @endif
+                                            </td>
+                                            <td>
+                                                @foreach ($bankdetails->where('user_id', $transact->user->id) as $bank)
+                                                {{ $bank->bank_name }} {{ $bank->account_num }}<br> {{ $bank->account_name }}
+                                                @endforeach
                                             </td>
                                             <td>
                                                 <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#activate{{ $transact->id }}"> Approve </button>
@@ -89,6 +95,27 @@ Pending Referral Withdrawal || Miscochat Concept
                                                 </div>
                                             </div>
                                             <!-- /.modal -->
+
+                                            <!--Approve modal content -->
+                                            <div id="bank{{ $transact->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="myModalLabel">Bank Details</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                                            <a href="{{ route('adminapprovewithdrawal',$transact->id) }}" class="btn btn-success btn-sm waves-effect waves-light">Approve Referral Withdrawal</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal -->
+
                                             <!--Decline modal content -->
                                             <div id="decline{{ $transact->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                                 <div class="modal-dialog">
@@ -98,7 +125,7 @@ Pending Referral Withdrawal || Miscochat Concept
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <h4><strong>Decline Referral  Withdrawal</strong></h4>
+                                                            <h4><strong>Decline Referral Withdrawal</strong></h4>
                                                             <p>Are you sure you want to Decline Withdrawal of <strong>₦{{ number_format($transact->amount, 0,'.',',') }}</strong> from <strong>{{ $transact->user->username }}</strong></p>
                                                         </div>
                                                         <div class="modal-footer">

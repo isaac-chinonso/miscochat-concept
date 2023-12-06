@@ -245,26 +245,29 @@ class UserPostController extends Controller
         return redirect()->route('userdashboard');
     }
 
-    // Save Bank
+    // Update Bank Details function
     public function savebank(Request $request)
     {
         // Validation
-        $this->validate($request, [
+        $this->validate($request, array(
             'account_name' => 'required',
             'account_num' => 'required',
             'bank_name' => 'required',
-        ]);
+        ));
 
         $user = Auth::user();
-        // Save Record into Bank DB
-        $bank = new Bank();
-        $bank->user_id = $user->id;
+
+        $bank = Bank::where('user_id', $user->id)->first();
+
         $bank->account_name = $request->input('account_name');
+
         $bank->account_num = $request->input('account_num');
+
         $bank->bank_name = $request->input('bank_name');
+
         $bank->save();
 
-        \Session::flash('Success_message', 'Bank Account Details Updated Successfully');
+        \Session::flash('Success_message', '✔ Bank Details Updated Succeffully');
 
         return back();
     }
@@ -272,20 +275,23 @@ class UserPostController extends Controller
     public function accepttask(Request $request, $id)
     {
         $user = Auth::user();
+        if ($user->activated == 1) {
+            $task = new Task();
+            $task->order_id = $request->input('order_id');
+            $task->buyer_id = $request->input('buyer_id');
+            $task->user_id = $user->id;
+            $task->accept_status = 0;
+            if (Task::where('user_id', '=', $user->id)->where('order_id', '=', $id)->exists()) {
+                return back()->with('warning_message', 'Task Already Accepted, Check Accepted Task Page for details');
+            } else {
+                $task->save();
 
-        $task = new Task();
-        $task->order_id = $request->input('order_id');
-        $task->buyer_id = $request->input('buyer_id');
-        $task->user_id = $user->id;
-        $task->accept_status = 0;
-        if (Task::where('user_id', '=', $user->id)->where('order_id', '=', $id)->exists()) {
-            return back()->with('warning_message', 'Task Already Accepted, Check Accepted Task Page for details');
+                \Session::flash('Success_message', 'Task Accepted Successfully');
+
+                return redirect()->route('useracceptedtask');
+            }
         } else {
-            $task->save();
-
-            \Session::flash('Success_message', 'Task Accepted Successfully');
-
-            return redirect()->route('useracceptedtask');
+            return back()->with('warning_message', 'you need to activate account first');
         }
     }
 
@@ -386,8 +392,6 @@ class UserPostController extends Controller
 
         return back();
     }
-
-
 
     public function submitprofile()
     {

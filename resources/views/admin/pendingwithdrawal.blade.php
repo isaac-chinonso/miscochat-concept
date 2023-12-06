@@ -43,6 +43,7 @@ Pending Withdrawal History || Miscochat Concept
                                             <th>Amount</th>
                                             <th>Type</th>
                                             <th>Status</th>
+                                            <th>Bank </th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -64,6 +65,11 @@ Pending Withdrawal History || Miscochat Concept
                                                 @elseif($transact->status == 1)
                                                 <span class="badge bg-success">Paid</span>
                                                 @endif
+                                            </td>
+                                            <td>
+                                                @foreach ($bankdetails->where('user_id', $transact->user->id) as $bank)
+                                                {{ $bank->bank_name }} {{ $bank->account_num }}<br> {{ $bank->account_name }}
+                                                @endforeach
                                             </td>
                                             <td>
                                                 <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#activate{{ $transact->id }}"> Approve </button>

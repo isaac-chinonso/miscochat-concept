@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bank;
 use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\Noticeboard;
@@ -167,6 +168,7 @@ class AdminPageController extends Controller
     public function pendingwithdrawal()
     {
         $data['pendingwithdrawal'] = Transaction::where('status', 0)->where('type', '=', 'withdrawal')->get();
+        $data['bankdetails'] = Bank::all();
         return view('admin.pendingwithdrawal', $data);
     }
 
@@ -179,6 +181,7 @@ class AdminPageController extends Controller
     public function pendingreferrawithdrawal()
     {
         $data['pendingwithdrawal'] = Transaction::where('status', 0)->where('type', '=', 'referral earning')->get();
+        $data['bankdetails'] = Bank::all();
         return view('admin.pending_referral_withdrawal', $data);
     }
 

@@ -84,18 +84,21 @@ class UserController extends Controller
         $user->save();
 
         // Find the referring user by username
-        $referringUser = User::where('username', $request->referred_by_user)->firstOrFail();
+        $referringUser = User::where('username', $request->referred_by_user)->first();
 
-        //Save Record into Referral DB
-        $referral = new Referral();
-        $referral->user_id = $user->id;
-        $referral->referred_by_user = $referringUser->username;
-        $referral->earnings = 2000.00;
-        $referral->save();
+        if ($referringUser) {
+            // Save Record into Referral DB
+            $referral = new Referral();
+            $referral->user_id = $user->id;
+            $referral->referred_by_user = $referringUser->username;
+            $referral->earnings = 2000.00;
+            $referral->save();
 
-        $walletfund = ReferralWallet::where('username', $referringUser->username)->first();
-        $walletfund->balance += 2000.00;
-        $walletfund->save();
+            // Update referral wallet balance
+            $walletfund = ReferralWallet::where('username', $referringUser->username)->first();
+            $walletfund->balance += 2000.00;
+            $walletfund->save();
+        } 
 
         $bank = new Bank();
         $bank->user_id = $user->id;

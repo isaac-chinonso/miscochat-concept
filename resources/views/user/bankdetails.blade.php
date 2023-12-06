@@ -94,7 +94,7 @@ Update Bank Details || Miscochat Concept
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="form-label">Account Name</label>
-                                            <input type="text" class="form-control" name="account_name" value="{{ $bankdetails->account_num }}">
+                                            <input type="text" class="form-control" name="account_name" value="{{ $bankdetails->account_name }}">
                                         </div>
                                     </div>
                                 </div>
